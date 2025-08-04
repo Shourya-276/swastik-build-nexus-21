@@ -5,10 +5,15 @@ import ProjectsSection from '@/components/ProjectsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import BlogsSection from '@/components/BlogsSection';
 import FAQSection from '@/components/FAQSection';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import aboutInterior from '@/assets/about-interior.jpg';
 import lifestyleInterior from '@/assets/lifestyle-interior.jpg';
 
 const AboutUs = () => {
+  const missionReveal = useScrollReveal({ delay: 0 });
+  const visionReveal = useScrollReveal({ delay: 200 });
+  const valuesReveal = useScrollReveal({ delay: 400 });
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -112,32 +117,43 @@ const AboutUs = () => {
       {/* Our Mission Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Mission
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-4">
-                <p>
-                  Our mission is to offer the best and quick real estate solutions that improve people's lives.
-                </p>
-                <p>
-                  By staying true to our values of honesty, transparency, and commitment, we work hard to raise the standards in our industry and build strong, long-lasting relationships with our clients and partners.
-                </p>
-              </div>
-            </div>
-            
-            <div className="order-first lg:order-last">
-              <div className="relative">
-                <img 
-                  src={aboutInterior} 
-                  alt="Our Mission" 
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                />
+          <div
+            ref={missionReveal.ref}
+            className={`transition-all duration-700 ease-out ${
+              missionReveal.isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-white rounded-3xl shadow-lg p-8 lg:p-12 hover:shadow-xl transition-shadow duration-300">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                      Our Mission
+                    </h2>
+                    <div className="w-16 h-1 bg-brand-blue mb-6"></div>
+                  </div>
+                  
+                  <div className="text-gray-600 leading-relaxed space-y-4">
+                    <p>
+                      Our mission is to offer the best and quick real estate solutions that improve people's lives.
+                    </p>
+                    <p>
+                      By staying true to our values of honesty, transparency, and commitment, we work hard to raise the standards in our industry and build strong, long-lasting relationships with our clients and partners.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="order-first lg:order-last">
+                  <div className="relative">
+                    <img 
+                      src={aboutInterior} 
+                      alt="Our Mission" 
+                      className="w-full h-auto rounded-2xl shadow-lg"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -147,30 +163,41 @@ const AboutUs = () => {
       {/* Our Vision Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="relative">
-              <img 
-                src={lifestyleInterior} 
-                alt="Our Vision" 
-                className="w-full h-auto rounded-2xl shadow-lg"
-              />
-            </div>
-            
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Vision
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-4">
-                <p>
-                  Our vision is to enhance overall infrastructure, making life better and progress faster through innovative real estate projects. Our aim is to make it affordable for people to locate and purchase homes and office spaces.
-                </p>
-                <p>
-                  We are committed to improving the quality and design of our properties. We want to build a better future for everyone through innovation, prioritizing sustainability, and Engaging with the community.
-                </p>
+          <div
+            ref={visionReveal.ref}
+            className={`transition-all duration-700 ease-out ${
+              visionReveal.isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-white rounded-3xl shadow-lg p-8 lg:p-12 hover:shadow-xl transition-shadow duration-300">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="relative">
+                  <img 
+                    src={lifestyleInterior} 
+                    alt="Our Vision" 
+                    className="w-full h-auto rounded-2xl shadow-lg"
+                  />
+                </div>
+                
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                      Our Vision
+                    </h2>
+                    <div className="w-16 h-1 bg-brand-blue mb-6"></div>
+                  </div>
+                  
+                  <div className="text-gray-600 leading-relaxed space-y-4">
+                    <p>
+                      Our vision is to enhance overall infrastructure, making life better and progress faster through innovative real estate projects. Our aim is to make it affordable for people to locate and purchase homes and office spaces.
+                    </p>
+                    <p>
+                      We are committed to improving the quality and design of our properties. We want to build a better future for everyone through innovation, prioritizing sustainability, and Engaging with the community.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -180,38 +207,49 @@ const AboutUs = () => {
       {/* Our Values Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Values
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-6">
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Transparency:</h3>
-                  <p>We believe in open communication so that our customers informed about everything we do.</p>
+          <div
+            ref={valuesReveal.ref}
+            className={`transition-all duration-700 ease-out ${
+              valuesReveal.isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-white rounded-3xl shadow-lg p-8 lg:p-12 hover:shadow-xl transition-shadow duration-300">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                      Our Values
+                    </h2>
+                    <div className="w-16 h-1 bg-brand-blue mb-6"></div>
+                  </div>
+                  
+                  <div className="text-gray-600 leading-relaxed space-y-6">
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">• Transparency:</h3>
+                      <p>We believe in open communication so that our customers informed about everything we do.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">• Commitment:</h3>
+                      <p>We always make sure to stick to deadlines and deliver the best and quality projects on time and within budget.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">• Excellence:</h3>
+                      <p>From designing, building, serving customers, or managing projects we always aim for the best in everything we do.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Commitment:</h3>
-                  <p>We always make sure to stick to deadlines and deliver the best and quality projects on time and within budget.</p>
+                
+                <div className="order-first lg:order-last">
+                  <div className="relative">
+                    <img 
+                      src={aboutInterior} 
+                      alt="Our Values" 
+                      className="w-full h-auto rounded-2xl shadow-lg"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Excellence:</h3>
-                  <p>From designing, building, serving customers, or managing projects we always aim for the best in everything we do.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-first lg:order-last">
-              <div className="relative">
-                <img 
-                  src={aboutInterior} 
-                  alt="Our Values" 
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                />
               </div>
             </div>
           </div>
