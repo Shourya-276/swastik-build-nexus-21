@@ -69,28 +69,33 @@ export const useStackedCards = ({ cards, cardHeight = 600 }: UseStackedCardsProp
     
     let transform = '';
     let opacity = 1;
-    let zIndex = cards.length - index;
+    let zIndex = cards.length - index; // Higher index = lower z-index
     
     if (isPrevious) {
       // Cards that have already been passed
       transform = 'translateY(-100vh) scale(0.95)';
       opacity = 0;
+      zIndex = cards.length + index; // Keep them on top but invisible
     } else if (isActive) {
       // Currently active card
       const translateY = scrollProgress * -100;
       const scale = 1 - (scrollProgress * 0.05);
       transform = `translateY(${translateY}vh) scale(${scale})`;
       opacity = 1 - (scrollProgress * 0.3);
+      zIndex = cards.length - index + 10; // Highest z-index for active card
     } else if (isNext) {
-      // Next card sliding up
-      const translateY = 100 - (scrollProgress * 100);
+      // Next card sliding up from behind
+      const translateY = 20 - (scrollProgress * 20); // Start slightly below, move to 0
       const scale = 0.95 + (scrollProgress * 0.05);
-      transform = `translateY(${translateY}vh) scale(${scale})`;
+      transform = `translateY(${translateY}px) scale(${scale})`;
       opacity = 0.7 + (scrollProgress * 0.3);
+      zIndex = cards.length - index - 1; // Behind the active card
     } else {
-      // Future cards
-      transform = 'translateY(100vh) scale(0.95)';
-      opacity = 0.7;
+      // Future cards - stack behind
+      const stackOffset = (index - activeIndex) * 10;
+      transform = `translateY(${stackOffset}px) scale(0.95)`;
+      opacity = 0.6;
+      zIndex = cards.length - index - 2; // Further behind
     }
     
     return {
