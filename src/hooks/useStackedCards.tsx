@@ -24,43 +24,68 @@ export const useStackedCards = ({ cards, cardHeight = 600 }: UseStackedCardsProp
       const containerTop = rect.top;
       const containerHeight = rect.height;
       
-      // Calculate when the container enters and exits the viewport
-      const startOffset = windowHeight * 0.5;
-      const endOffset = windowHeight * 0.3;
+      // More gradual start and end zones for smoother transitions
+      const startOffset = windowHeight * 0.6;
+      const endOffset = windowHeight * 0.2;
       
       if (containerTop > startOffset) {
-        // Container hasn't entered the active zone yet
         setActiveIndex(0);
         setScrollProgress(0);
         return;
       }
       
       if (containerTop < -containerHeight + endOffset) {
-        // Container has completely passed through
         setActiveIndex(cards.length - 1);
         setScrollProgress(1);
         return;
       }
       
-      // Calculate progress through the container
+      // Smoother progress calculation with easing
       const scrollableDistance = containerHeight + startOffset - endOffset;
       const scrolled = startOffset - containerTop;
-      const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+      let progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
       
-      // Determine active card based on progress
+      // Apply easing for smoother transitions
+      progress = easeInOutCubic(progress);
+      
+      // More gradual card transitions
       const cardProgress = progress * (cards.length - 1);
       const newActiveIndex = Math.floor(cardProgress);
       const cardTransitionProgress = cardProgress - newActiveIndex;
       
+      // Smooth the transition progress
+      const smoothTransitionProgress = easeInOutQuart(cardTransitionProgress);
+      
       setActiveIndex(newActiveIndex);
-      setScrollProgress(cardTransitionProgress);
+      setScrollProgress(smoothTransitionProgress);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Smooth scroll handling with requestAnimationFrame
+    let ticking = false;
+    const smoothHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', smoothHandleScroll, { passive: true });
     handleScroll(); // Initial call
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', smoothHandleScroll);
   }, [cards.length]);
+
+  // Easing functions for smoother animations
+  const easeInOutCubic = (t: number): number => {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  };
+
+  const easeInOutQuart = (t: number): number => {
+    return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+  };
 
   const getCardStyle = (index: number) => {
     const isActive = index === activeIndex;
@@ -77,25 +102,26 @@ export const useStackedCards = ({ cards, cardHeight = 600 }: UseStackedCardsProp
       opacity = 0;
       zIndex = cards.length + index; // Keep them on top but invisible
     } else if (isActive) {
-      // Currently active card
-      const translateY = scrollProgress * -100;
-      const scale = 1 - (scrollProgress * 0.05);
+      // Currently active card with smoother exit
+      const translateY = scrollProgress * -80; // Less aggressive movement
+      const scale = 1 - (scrollProgress * 0.03); // Subtle scale change
       transform = `translateY(${translateY}vh) scale(${scale})`;
-      opacity = 1 - (scrollProgress * 0.3);
-      zIndex = cards.length - index + 10; // Highest z-index for active card
+      opacity = 1 - (scrollProgress * 0.2); // More gradual fade
+      zIndex = cards.length - index + 10;
     } else if (isNext) {
-      // Next card sliding up from behind
-      const translateY = 20 - (scrollProgress * 20); // Start slightly below, move to 0
-      const scale = 0.95 + (scrollProgress * 0.05);
+      // Next card sliding up from behind with smoother entry
+      const translateY = 15 - (scrollProgress * 15); // Gentler start position
+      const scale = 0.97 + (scrollProgress * 0.03); // Smoother scale transition
       transform = `translateY(${translateY}px) scale(${scale})`;
-      opacity = 0.7 + (scrollProgress * 0.3);
-      zIndex = cards.length - index - 1; // Behind the active card
+      opacity = 0.8 + (scrollProgress * 0.2); // Smoother opacity transition
+      zIndex = cards.length - index - 1;
     } else {
-      // Future cards - stack behind
-      const stackOffset = (index - activeIndex) * 10;
-      transform = `translateY(${stackOffset}px) scale(0.95)`;
-      opacity = 0.6;
-      zIndex = cards.length - index - 2; // Further behind
+      // Future cards - subtle stacking
+      const stackOffset = (index - activeIndex) * 8; // Tighter stacking
+      const stackScale = 0.97 - ((index - activeIndex) * 0.01); // Gradual scale reduction
+      transform = `translateY(${stackOffset}px) scale(${stackScale})`;
+      opacity = Math.max(0.5, 0.8 - ((index - activeIndex) * 0.1)); // Gradual opacity reduction
+      zIndex = cards.length - index - 2;
     }
     
     return {
