@@ -54,7 +54,7 @@ const SocialMediaSection = () => {
           {socialImages.map((image, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-xl group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand ${
+              className={`relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand ${
                 index === 0 ? 'md:col-span-2 md:row-span-2' : ''
               } ${index === 3 ? 'md:col-span-2' : ''}`}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -62,7 +62,7 @@ const SocialMediaSection = () => {
               <img
                 src={image.src}
                 alt={image.alt}
-                className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius ${
                   index === 0 ? 'h-80 md:h-full' : 'h-40 md:h-48'
                 }`}
               />

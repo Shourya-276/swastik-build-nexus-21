@@ -147,4 +147,12 @@ All colors MUST be HSL.
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/80;
   }
+
+  /* Custom image border radius - curved top-left and bottom-right, pointed top-right and bottom-left */
+  .custom-image-radius {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 1.5rem;
+  }
 }

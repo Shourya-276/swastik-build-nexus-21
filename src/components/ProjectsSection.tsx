@@ -96,11 +96,11 @@ const ProjectsSection = () => {
               className="group overflow-hidden shadow-card hover:shadow-brand transition-all duration-500 hover:-translate-y-2"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden custom-image-radius">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">

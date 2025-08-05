@@ -51,11 +51,11 @@ const AboutUsSection = () => {
           </div>
           
           <div className="relative animate-slide-up">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl">
+            <div className="relative overflow-hidden custom-image-radius shadow-2xl">
               <img 
                 src={aboutInterior} 
                 alt="Modern interior architecture"
-                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius"
               />
             </div>
           </div>
@@ -64,11 +64,11 @@ const AboutUsSection = () => {
         {/* Values, Vision, Mission section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
           <div className="order-2 lg:order-1 relative animate-slide-up">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl">
+            <div className="relative overflow-hidden custom-image-radius shadow-2xl">
               <img 
                 src={lifestyleInterior} 
                 alt="Modern lifestyle interior"
-                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius"
               />
             </div>
           </div>
