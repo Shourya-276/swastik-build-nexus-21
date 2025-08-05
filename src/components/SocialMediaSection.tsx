@@ -50,35 +50,111 @@ const SocialMediaSection = () => {
         </div>
 
         {/* Image Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 animate-slide-up">
-          {socialImages.map((image, index) => (
-            <div
-              key={index}
-              className={`relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand ${
-                index === 0 ? 'md:col-span-2 md:row-span-2' : ''
-              } ${index === 3 ? 'md:col-span-2' : ''}`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className={`w-full object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius ${
-                  index === 0 ? 'h-80 md:h-full' : 'h-40 md:h-48'
-                }`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                <p className="text-sm font-medium">{image.alt}</p>
-              </div>
-              
-              {/* Social media overlay */}
-              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Instagram className="w-4 h-4 text-white" />
-                </div>
+        <div className="grid grid-cols-4 gap-4 animate-slide-up max-w-6xl mx-auto">
+          {/* First large image */}
+          <div className="col-span-2 row-span-2 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[0].src}
+              alt={socialImages[0].alt}
+              className="w-full h-80 md:h-96 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+              <p className="text-sm font-medium">{socialImages[0].alt}</p>
+            </div>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-4 h-4 text-white" />
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Small vertical images - right side */}
+          <div className="col-span-1 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[1].src}
+              alt={socialImages[1].alt}
+              className="w-full h-38 md:h-46 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <p className="text-xs font-medium">{socialImages[1].alt}</p>
+            </div>
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-3 h-3 text-white" />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-1 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[2].src}
+              alt={socialImages[2].alt}
+              className="w-full h-38 md:h-46 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <p className="text-xs font-medium">{socialImages[2].alt}</p>
+            </div>
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-3 h-3 text-white" />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-1 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[3].src}
+              alt={socialImages[3].alt}
+              className="w-full h-38 md:h-46 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <p className="text-xs font-medium">{socialImages[3].alt}</p>
+            </div>
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-3 h-3 text-white" />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-1 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[4].src}
+              alt={socialImages[4].alt}
+              className="w-full h-38 md:h-46 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-2 left-2 right-2 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <p className="text-xs font-medium">{socialImages[4].alt}</p>
+            </div>
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-6 h-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-3 h-3 text-white" />
+              </div>
+            </div>
+          </div>
+
+          {/* Second large image */}
+          <div className="col-span-2 row-span-2 relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
+            <img
+              src={socialImages[5].src}
+              alt={socialImages[5].alt}
+              className="w-full h-80 md:h-96 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+              <p className="text-sm font-medium">{socialImages[5].alt}</p>
+            </div>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Instagram className="w-4 h-4 text-white" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="text-center mt-8">
