@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-brand-light-blue/20 via-background to-background">
       <Header />
       <HeroSection />
       <AboutUsSection />
@@ -21,6 +21,7 @@ const Index = () => {
       <PresencesSection />
       <SocialMediaSection />
       <BlogsSection />
+      <EMICalculator />
       <FAQSection />
       <Footer />
     </div>

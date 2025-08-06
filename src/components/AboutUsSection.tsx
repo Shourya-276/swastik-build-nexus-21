@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 import aboutInterior from "@/assets/about-interior.jpg";
 import lifestyleInterior from "@/assets/lifestyle-interior.jpg";
+import ValuesMissionVisionCards from "./ValuesMissionVisionCards";
 
 const AboutUsSection = () => {
   const stats = [
@@ -62,46 +64,23 @@ const AboutUsSection = () => {
         </div>
 
         {/* Values, Vision, Mission section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-          <div className="order-2 lg:order-1 relative animate-slide-up">
-            <div className="relative overflow-hidden custom-image-radius shadow-2xl">
-              <img 
-                src={lifestyleInterior} 
-                alt="Modern lifestyle interior"
-                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius"
-              />
-            </div>
+        <div className="mb-16 animate-fade-in">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-4">
+              Our Values, Vision & Mission
+            </h2>
+            <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
+            <p className="text-brand-gray text-lg max-w-2xl mx-auto">
+              The core principles and aspirations that guide our journey in creating exceptional real estate experiences.
+            </p>
           </div>
-          
-          <div className="order-1 lg:order-2 space-y-8 animate-fade-in">
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-brand transition-all duration-300">
-                <h3 className="text-xl font-bold text-brand-navy mb-3">Our Values</h3>
-                <p className="text-brand-gray">
-                  Integrity, transparency, and excellence form the foundation of everything we do.
-                </p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-brand transition-all duration-300">
-                <h3 className="text-xl font-bold text-brand-navy mb-3">Our Vision</h3>
-                <p className="text-brand-gray">
-                  To be Mumbai's most trusted real estate developer, creating sustainable communities.
-                </p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-card hover:shadow-brand transition-all duration-300">
-                <h3 className="text-xl font-bold text-brand-navy mb-3">Our Mission</h3>
-                <p className="text-brand-gray">
-                  Building quality homes that blend contemporary design with innovation and sustainability.
-                </p>
-              </div>
-            </div>
-          </div>
+          <ValuesMissionVisionCards />
         </div>
 
         {/* Stats section */}
         <div className="bg-gradient-brand rounded-2xl p-8 lg:p-12 shadow-brand animate-fade-in">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {/* Desktop Grid Layout */}
+          <div className="hidden lg:grid lg:grid-cols-6 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center text-white">
                 <div className="text-3xl lg:text-4xl font-bold mb-2">
@@ -112,6 +91,34 @@ const AboutUsSection = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Mobile/Tablet Marquee Layout */}
+          <div className="lg:hidden overflow-hidden">
+            <div className="flex animate-marquee hover:pause">
+              {/* First set of cards */}
+              {stats.map((stat, index) => (
+                <div key={`first-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
+                  <div className="text-3xl font-bold mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm opacity-90 whitespace-normal">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {stats.map((stat, index) => (
+                <div key={`second-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
+                  <div className="text-3xl font-bold mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm opacity-90 whitespace-normal">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

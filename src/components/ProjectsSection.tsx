@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useIsMobile } from "@/hooks/use-mobile";
 import projectTower1 from "@/assets/project-tower-1.jpg";
 import projectTower2 from "@/assets/project-tower-2.jpg";
 import projectTower3 from "@/assets/project-tower-3.jpg";
@@ -9,6 +10,7 @@ import projectTower3 from "@/assets/project-tower-3.jpg";
 const ProjectsSection = () => {
   const [activeTab, setActiveTab] = useState("completed");
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const projects = {
     completed: [
@@ -88,19 +90,27 @@ const ProjectsSection = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up">
+        {/* Projects Grid/Scroll */}
+        <div 
+          className={
+            isMobile 
+              ? "flex gap-6 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory projects-scroll animate-slide-up" 
+              : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-slide-up"
+          }
+        >
           {projects[activeTab as keyof typeof projects].map((project, index) => (
             <Card 
               key={project.id} 
-              className="group overflow-hidden shadow-card hover:shadow-brand transition-all duration-500 hover:-translate-y-2"
+              className={`group overflow-hidden shadow-card hover:shadow-brand transition-all duration-500 hover:-translate-y-2 ${
+                isMobile ? 'flex-shrink-0 w-80 snap-center' : ''
+              }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="relative overflow-hidden custom-image-radius">
+              <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">

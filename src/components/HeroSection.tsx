@@ -27,7 +27,7 @@ const HeroSection = () => {
         <Button 
           variant="enquiry" 
           size="lg"
-          className="rounded-l-full rounded-r-none py-6 px-8 writing-mode-vertical-rl text-orientation-mixed shadow-brand"
+          className="rounded-xl py-12 px-6 writing-mode-vertical-rl text-orientation-mixed shadow-brand min-h-[120px]"
           style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
         >
           Enquiry Now
