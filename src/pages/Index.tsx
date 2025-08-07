@@ -195,15 +195,15 @@ const Index = () => {
       <HeroSection />
       
       {/* Who We Are Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <AboutUsSection />
         </div>
       </section>
       {/* Values, Vision & Mission Section */}
-      <section className="py-16 lg:py-20 bg-muted/50">
+      <section className="py-10 lg:py-12 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
               Our Values, Vision & Mission
             </h2>
@@ -217,7 +217,7 @@ const Index = () => {
       </section>
       
       {/* Stats section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
             {/* Unified Marquee Layout for All Screen Sizes */}
@@ -264,27 +264,27 @@ const Index = () => {
       </section>
 
       {/* Our Projects Section */}
-      <section className="py-16 lg:py-20 bg-muted/50">
+      <section className="py-10 lg:py-12 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <ProjectsSection />
         </div>
       </section>
       {/* Why Choose Us Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <WhyChooseUsSection />
         </div>
       </section>
 
       {/* Our Presence Section */}
-      <section className="py-16 lg:py-20 bg-muted/50">
+      <section className="py-10 lg:py-12 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <PresencesSection />
         </div>
       </section>
 
       {/* YouTube Video Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
@@ -315,28 +315,28 @@ const Index = () => {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-16 lg:py-20 bg-muted/50">
+      <section className="py-10 lg:py-12 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <SocialMediaSection />
         </div>
       </section>
 
       {/* Blogs Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <BlogsSection />
         </div>
       </section>
 
       {/* EMI Calculator Section */}
-      <section className="py-16 lg:py-20 bg-muted/50">
+      <section className="py-10 lg:py-12 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <EMICalculator />
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 lg:py-20">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <FAQSection />
         </div>

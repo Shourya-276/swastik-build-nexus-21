@@ -130,21 +130,21 @@ const Projects = () => {
       <Header />
       
       {/* Top Navigation Bar */}
-      <div className="bg-brand-blue text-white py-3">
+      <div className="bg-gradient-brand text-white py-3">
         <div className="container mx-auto px-4 flex items-center space-x-6 text-sm">
-          <button className="flex items-center space-x-1 hover:text-brand-light">
+          <button className="flex items-center space-x-1 hover:text-white/80">
             <span>Location</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <button className="flex items-center space-x-1 hover:text-brand-light">
+          <button className="flex items-center space-x-1 hover:text-white/80">
             <span>Property Type</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <button className="flex items-center space-x-1 hover:text-brand-light">
+          <button className="flex items-center space-x-1 hover:text-white/80">
             <span>Configuration</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -158,28 +158,75 @@ const Projects = () => {
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-12">
+      {/* Stats Section */}
+      <section className="py-10 lg:py-12">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
+            <div className="flex animate-marquee hover:pause">
+              {/* First set of cards */}
+              {[
+                { value: "25+", label: "Years of Excellence" },
+                { value: "1.5", label: "Million Sq. Ft. Developed" },
+                { value: "1500+", label: "Happy Families" },
+                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
+                { value: "22", label: "Successful Projects" },
+                { value: "7", label: "Prime Locations" }
+              ].map((stat, index) => (
+                <div key={`first-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
+                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[
+                { value: "25+", label: "Years of Excellence" },
+                { value: "1.5", label: "Million Sq. Ft. Developed" },
+                { value: "1500+", label: "Happy Families" },
+                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
+                { value: "22", label: "Successful Projects" },
+                { value: "7", label: "Prime Locations" }
+              ].map((stat, index) => (
+                <div key={`second-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
+                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main className="container mx-auto px-4 py-10 lg:py-12">
         {/* Page Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6">
+          <h1 className="text-3xl lg:text-5xl font-bold text-brand-navy mb-6">
             Our Projects
           </h1>
+          <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
           
           {/* Tab Navigation */}
-          <div className="flex justify-center space-x-2 bg-gray-100 rounded-lg p-2 inline-flex mb-8">
+          <div className="flex justify-center space-x-2 bg-muted rounded-lg p-2 inline-flex mb-8">
             <Button
-              variant={activeTab === 'completed' ? 'default' : 'ghost'}
+              variant={activeTab === 'completed' ? 'brand' : 'ghost'}
               size="lg"
               onClick={() => setActiveTab('completed')}
-              className={`px-8 ${activeTab === 'completed' ? 'bg-brand-blue text-white' : 'text-gray-600'}`}
+              className={`px-8 ${activeTab === 'completed' ? '' : 'text-brand-gray'}`}
             >
               Completed
             </Button>
             <Button
-              variant={activeTab === 'ongoing' ? 'default' : 'ghost'}
+              variant={activeTab === 'ongoing' ? 'brand' : 'ghost'}
               size="lg"
               onClick={() => setActiveTab('ongoing')}
-              className={`px-8 ${activeTab === 'ongoing' ? 'bg-brand-blue text-white' : 'text-gray-600'}`}
+              className={`px-8 ${activeTab === 'ongoing' ? '' : 'text-brand-gray'}`}
             >
               Ongoing
             </Button>
@@ -187,9 +234,9 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {projects[activeTab as keyof typeof projects].map((project) => (
-            <Card key={project.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 relative group border-0">              
+            <Card key={project.id} className="overflow-hidden shadow-brand hover:shadow-brand/80 transition-shadow duration-300 relative group border-0 bg-white/80 backdrop-blur-sm">              
               {/* Project Image with custom border radius */}
               <div className="relative overflow-hidden">
                 <img
@@ -202,7 +249,7 @@ const Projects = () => {
                     clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0% 100%)'
                   }}
                 />
-                <div className="absolute top-4 left-4 bg-brand-blue text-white px-3 py-1 rounded-full text-xs font-medium">
+                <div className="absolute top-4 left-4 bg-gradient-brand text-white px-3 py-1 rounded-full text-xs font-medium">
                   {project.tag}
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
@@ -217,20 +264,20 @@ const Projects = () => {
                 <div className="space-y-3">
                   <div>
                     <h3 className="text-xl font-bold text-brand-navy">{project.name}</h3>
-                    <p className="text-sm text-gray-600">{project.subtitle}</p>
+                    <p className="text-sm text-brand-gray">{project.subtitle}</p>
                   </div>
                   
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Configuration:</span>
-                      <span className="font-medium">{project.configuration}</span>
+                      <span className="text-brand-gray">Configuration:</span>
+                      <span className="font-medium text-brand-navy">{project.configuration}</span>
                     </div>
                     <div className="text-brand-blue font-bold text-lg">
                       {project.price}
                     </div>
                   </div>
 
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-brand-gray text-sm leading-relaxed">
                     {project.description}
                   </p>
 
@@ -248,17 +295,17 @@ const Projects = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-blue-50 rounded-lg p-8">
-          <h2 className="text-3xl font-bold text-center text-brand-navy mb-8">
+        <div className="bg-muted/50 rounded-2xl p-8 lg:p-12">
+          <h2 className="text-2xl lg:text-3xl font-bold text-center text-brand-navy mb-8">
             Frequently Asked Questions
           </h2>
           <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-8"></div>
           
           <div className="space-y-4 max-w-4xl mx-auto">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 shadow-sm border border-blue-100">
+              <div key={index} className="bg-white/80 backdrop-blur-sm rounded-lg p-4 lg:p-6 shadow-sm border border-border/50">
                 <div className="flex justify-between items-center">
-                  <p className="text-brand-navy font-medium">{faq}</p>
+                  <p className="text-brand-navy font-medium text-sm lg:text-base">{faq}</p>
                   <Button variant="ghost" size="sm" className="text-brand-blue">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
