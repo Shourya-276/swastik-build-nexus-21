@@ -21,12 +21,12 @@ const HeroSection = () => {
         </div>
 
         {/* Fixed Enquiry Button */}
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40">
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40">
           <Button 
             variant="enquiry" 
             size="lg"
             onClick={() => setIsContactModalOpen(true)}
-            className="rounded-xl py-12 px-6 writing-mode-vertical-rl text-orientation-mixed shadow-brand min-h-[120px]"
+            className="rounded-xl py-12 px-6 writing-mode-vertical-rl text-orientation-mixed shadow-brand min-h-[120px] relative overflow-hidden"
             style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
           >
             Enquiry Now

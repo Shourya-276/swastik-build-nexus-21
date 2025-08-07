@@ -1,6 +1,4 @@
-
 import React, { useEffect, useRef, useState } from 'react';
-
 interface StackedCard {
   id: string;
   colors: [string, string];
@@ -8,46 +6,40 @@ interface StackedCard {
   background?: string;
   content: React.ReactNode;
 }
-
 interface StackedCardsProps {
   cards: StackedCard[];
   containerClassName?: string;
   cardClassName?: string;
 }
-
-const StackedCards: React.FC<StackedCardsProps> = ({ 
-  cards, 
-  containerClassName = '', 
-  cardClassName = '' 
+const StackedCards: React.FC<StackedCardsProps> = ({
+  cards,
+  containerClassName = '',
+  cardClassName = ''
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCard, setActiveCard] = useState(0);
-
   useEffect(() => {
     const updateCards = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const cardElements = containerRef.current?.querySelectorAll('.stacked-card');
-      
       cardElements?.forEach((card, index) => {
         const htmlCard = card as HTMLElement;
         const cardTop = htmlCard.offsetTop;
         const cardHeight = htmlCard.offsetHeight;
-        
+
         // Calculate if card should be stacked
         const distanceFromTop = scrollY - cardTop + windowHeight * 0.2;
         const progress = Math.max(0, Math.min(1, distanceFromTop / (cardHeight * 0.5)));
-        
         if (scrollY > cardTop - windowHeight * 0.8) {
           // Scale down the PREVIOUS cards as new ones come over them
-          const scale = 1 - (progress * 0.05 * (index + 1));
+          const scale = 1 - progress * 0.05 * (index + 1);
           const translateY = progress * -10 * (index + 1);
-          
           htmlCard.style.transform = `scale(${scale}) translateY(${translateY}px)`;
         } else {
           htmlCard.style.transform = 'scale(1) translateY(0px)';
         }
-        
+
         // Update active card indicator
         if (scrollY >= cardTop - windowHeight * 0.5 && scrollY < cardTop + cardHeight - windowHeight * 0.5) {
           setActiveCard(index);
@@ -66,71 +58,45 @@ const StackedCards: React.FC<StackedCardsProps> = ({
         ticking = true;
       }
     };
-
     window.addEventListener('scroll', smoothScroll);
     window.addEventListener('resize', updateCards);
-    
+
     // Initialize
     updateCards();
-
     return () => {
       window.removeEventListener('scroll', smoothScroll);
       window.removeEventListener('resize', updateCards);
     };
   }, []);
-
   const scrollToCard = (index: number) => {
     const cardElements = containerRef.current?.querySelectorAll('.stacked-card');
     const targetCard = cardElements?.[index] as HTMLElement;
     if (targetCard) {
-      targetCard.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+      targetCard.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
       });
     }
   };
-
-  return (
-    <>
-      <div 
-        ref={containerRef} 
-        className={`relative max-w-6xl mx-auto py-16 ${containerClassName}`}
-      >
-        {cards.map((card, index) => (
-          <div
-            key={card.id || index}
-            className={`stacked-card sticky top-8 w-full min-h-[80vh] mb-8 p-12 flex items-center transition-all duration-700 ease-out shadow-2xl ${cardClassName}`}
-            style={{
-              zIndex: 1001 + index,
-              background: card.background || `linear-gradient(135deg, ${card.colors[0]}, ${card.colors[1]})`,
-              border: `1px solid ${card.borderColor || 'rgba(255, 255, 255, 0.5)'}`,
-              borderRadius: '60px 20px 60px 20px', // top-left (curvy), top-right (pointy), bottom-right (curvy), bottom-left (pointy)
-              transformOrigin: 'center bottom',
-              opacity: 1
-            }}
-          >
+  return <>
+      <div ref={containerRef} className={`relative max-w-6xl mx-auto py-16 ${containerClassName}`}>
+        {cards.map((card, index) => <div key={card.id || index} className={`stacked-card sticky top-8 w-full min-h-[80vh] mb-8 p-12 flex items-center transition-all duration-700 ease-out shadow-2xl ${cardClassName}`} style={{
+        zIndex: 1001 + index,
+        background: card.background || `linear-gradient(135deg, ${card.colors[0]}, ${card.colors[1]})`,
+        border: `1px solid ${card.borderColor || 'rgba(255, 255, 255, 0.5)'}`,
+        borderRadius: '60px 20px 60px 20px',
+        // top-left (curvy), top-right (pointy), bottom-right (curvy), bottom-left (pointy)
+        transformOrigin: 'center bottom',
+        opacity: 1
+      }}>
             <div className="w-full h-full flex items-center">
               {card.content}
             </div>
-          </div>
-        ))}
+          </div>)}
       </div>
 
       {/* Scroll Indicator */}
-      <div className="fixed top-1/2 right-8 transform -translate-y-1/2 flex flex-col gap-2 z-[2000]">
-        {cards.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 border-none cursor-pointer p-0 ${
-              activeCard === index 
-                ? 'bg-white transform scale-150' 
-                : 'bg-white/30 hover:bg-white/70 hover:scale-125'
-            }`}
-            onClick={() => scrollToCard(index)}
-            aria-label={`Go to card ${index + 1}`}
-          />
-        ))}
-      </div>
+      
 
       {/* Mobile responsive styles */}
       <style>
@@ -156,8 +122,6 @@ const StackedCards: React.FC<StackedCardsProps> = ({
           }
         `}
       </style>
-    </>
-  );
+    </>;
 };
-
 export default StackedCards;

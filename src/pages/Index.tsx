@@ -190,30 +190,39 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-light-blue/20 via-background to-background">
+    <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
-      <AboutUsSection />
-      {/* Values, Vision & Mission Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 lg:px-8 text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
-            Our Values, Vision & Mission
-          </h2>
-          <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
-          <p className="text-lg text-brand-gray max-w-4xl mx-auto leading-relaxed">
-            The core principles and aspirations that guide our journey in creating exceptional real estate experiences.
-          </p>
+      
+      {/* Who We Are Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <AboutUsSection />
         </div>
-        <StackedCards cards={cardData} />
+      </section>
+      {/* Values, Vision & Mission Section */}
+      <section className="py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
+              Our Values, Vision & Mission
+            </h2>
+            <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
+            <p className="text-lg text-brand-gray max-w-4xl mx-auto leading-relaxed">
+              The core principles and aspirations that guide our journey in creating exceptional real estate experiences.
+            </p>
+          </div>
+          <StackedCards cards={cardData} />
+        </div>
       </section>
       
       {/* Stats section */}
-      <section className="py-8">
+      <section className="py-16 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand animate-fade-in" style={{ borderRadius: '20px 60px 20px 60px' }}>
-            {/* Desktop Grid Layout */}
-            <div className="hidden lg:grid lg:grid-cols-6 gap-8">
+          <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
+            {/* Unified Marquee Layout for All Screen Sizes */}
+            <div className="flex animate-marquee hover:pause">
+              {/* First set of cards */}
               {[
                 { value: "25+", label: "Years of Excellence" },
                 { value: "1.5", label: "Million Sq. Ft. Developed" },
@@ -222,69 +231,117 @@ const Index = () => {
                 { value: "22", label: "Successful Projects" },
                 { value: "7", label: "Prime Locations" }
               ].map((stat, index) => (
-                <div key={index} className="text-center text-white">
-                  <div className="text-3xl lg:text-4xl font-bold mb-2">
+                <div key={`first-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
+                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm lg:text-base opacity-90">
+                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[
+                { value: "25+", label: "Years of Excellence" },
+                { value: "1.5", label: "Million Sq. Ft. Developed" },
+                { value: "1500+", label: "Happy Families" },
+                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
+                { value: "22", label: "Successful Projects" },
+                { value: "7", label: "Prime Locations" }
+              ].map((stat, index) => (
+                <div key={`second-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
+                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
                     {stat.label}
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Mobile/Tablet Marquee Layout */}
-            <div className="lg:hidden overflow-hidden">
-              <div className="flex animate-marquee hover:pause">
-                {/* First set of cards */}
-                {[
-                  { value: "25+", label: "Years of Excellence" },
-                  { value: "1.5", label: "Million Sq. Ft. Developed" },
-                  { value: "1500+", label: "Happy Families" },
-                  { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                  { value: "22", label: "Successful Projects" },
-                  { value: "7", label: "Prime Locations" }
-                ].map((stat, index) => (
-                  <div key={`first-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
-                    <div className="text-3xl font-bold mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm opacity-90 whitespace-normal">
-                      {stat.label}
-                    </div>
+      {/* Our Projects Section */}
+      <section className="py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <ProjectsSection />
+        </div>
+      </section>
+      {/* Why Choose Us Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <WhyChooseUsSection />
+        </div>
+      </section>
+
+      {/* Our Presence Section */}
+      <section className="py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <PresencesSection />
+        </div>
+      </section>
+
+      {/* YouTube Video Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
+              Watch Our Story
+            </h2>
+            <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
+            <p className="text-lg text-brand-gray max-w-3xl mx-auto leading-relaxed">
+              Discover our journey in creating exceptional real estate experiences
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-gradient-to-r from-brand-blue to-brand-light-blue rounded-2xl p-8 shadow-brand">
+              <div className="aspect-video bg-white/10 rounded-xl border-2 border-white/20 flex items-center justify-center">
+                <div className="text-center text-white">
+                  <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
                   </div>
-                ))}
-                {/* Duplicate set for seamless loop */}
-                {[
-                  { value: "25+", label: "Years of Excellence" },
-                  { value: "1.5", label: "Million Sq. Ft. Developed" },
-                  { value: "1500+", label: "Happy Families" },
-                  { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                  { value: "22", label: "Successful Projects" },
-                  { value: "7", label: "Prime Locations" }
-                ].map((stat, index) => (
-                  <div key={`second-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
-                    <div className="text-3xl font-bold mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm opacity-90 whitespace-normal">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+                  <h3 className="text-xl font-semibold mb-2">Company Overview Video</h3>
+                  <p className="text-white/80">Click to watch our story</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <ProjectsSection />
-      <WhyChooseUsSection />
-      <PresencesSection />
-      <SocialMediaSection />
-      <BlogsSection />
-      <EMICalculator />
-      <FAQSection />
+      {/* Social Media Section */}
+      <section className="py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <SocialMediaSection />
+        </div>
+      </section>
+
+      {/* Blogs Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <BlogsSection />
+        </div>
+      </section>
+
+      {/* EMI Calculator Section */}
+      <section className="py-16 lg:py-20 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <EMICalculator />
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 lg:py-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <FAQSection />
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

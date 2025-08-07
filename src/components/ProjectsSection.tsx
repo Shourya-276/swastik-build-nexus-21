@@ -118,6 +118,11 @@ const ProjectsSection = () => {
                   src={project.image}
                   alt={project.name}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  style={{
+                    borderTopLeftRadius: '2rem',
+                    borderTopRightRadius: '0',
+                    clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0% 100%)'
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
