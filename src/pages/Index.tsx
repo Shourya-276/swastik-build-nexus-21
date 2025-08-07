@@ -201,7 +201,7 @@ const Index = () => {
         </div>
       </section>
       {/* Values, Vision & Mission Section */}
-      <section className="py-10 lg:py-12 bg-muted/50">
+      <section className="pt-10 pb-4 lg:pt-12 lg:pb-4 bg-muted/50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
@@ -217,7 +217,7 @@ const Index = () => {
       </section>
       
       {/* Stats section */}
-      <section className="py-10 lg:py-12">
+      <section className="pt-4 pb-10 lg:pt-4 lg:pb-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
             {/* Unified Marquee Layout for All Screen Sizes */}

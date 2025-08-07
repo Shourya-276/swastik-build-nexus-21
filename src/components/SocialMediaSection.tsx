@@ -50,25 +50,36 @@ const SocialMediaSection = () => {
         </div>
 
         {/* Image Grid */}
-        <div className="grid grid-cols-3 gap-4 animate-slide-up max-w-6xl mx-auto">
-          {socialImages.map((image, index) => (
-            <div key={index} className="relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand">
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-3 group-hover:translate-y-0">
-                <p className="text-sm font-medium">{image.alt}</p>
-              </div>
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <div className="w-7 h-7 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                  <Instagram className="w-4 h-4 text-white" />
+        <div className="flex flex-row overflow-x-auto gap-4 animate-slide-up max-w-6xl mx-auto snap-x snap-mandatory md:grid md:grid-cols-3 md:overflow-x-visible md:flex-none">
+          {socialImages.map((image, index) => {
+            // Show '+N more' overlay on the last visible image on mobile if there are more images
+            const isLastVisibleMobile = index === 2 && socialImages.length > 3;
+            const remaining = socialImages.length - 3;
+            return (
+              <div key={index} className="relative overflow-hidden custom-image-radius group cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-brand flex-shrink-0 w-72 snap-center md:w-auto">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500 custom-image-radius"
+                />
+                {/* Overlay for '+N more' on mobile */}
+                {isLastVisibleMobile && (
+                  <div className="absolute inset-0 bg-black/60 flex items-center justify-center md:hidden">
+                    <span className="text-white text-2xl font-bold">+{remaining} more</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-3 group-hover:translate-y-0">
+                  <p className="text-sm font-medium">{image.alt}</p>
+                </div>
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="w-7 h-7 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Instagram className="w-4 h-4 text-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-8">

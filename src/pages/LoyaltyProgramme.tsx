@@ -61,11 +61,17 @@ const LoyaltyProgramme = () => {
               </Button>
             </div>
             
-            <div className="relative">
+            <div className="relative flex justify-center lg:justify-end">
               <img 
                 src={familyImage} 
                 alt="Happy Family" 
-                className="w-full h-auto rounded-2xl"
+                className="w-full h-auto max-w-md md:max-w-lg"
+                style={{
+                  borderTopLeftRadius: '3rem',
+                  borderTopRightRadius: '0',
+                  borderBottomRightRadius: '3rem',
+                  borderBottomLeftRadius: '0'
+                }}
               />
             </div>
           </div>
@@ -92,60 +98,17 @@ const LoyaltyProgramme = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-10 lg:py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
-            <div className="flex animate-marquee hover:pause">
-              {/* First set of cards */}
-              {[
-                { value: "25+", label: "Years of Excellence" },
-                { value: "1.5", label: "Million Sq. Ft. Developed" },
-                { value: "1500+", label: "Happy Families" },
-                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                { value: "22", label: "Successful Projects" },
-                { value: "7", label: "Prime Locations" }
-              ].map((stat, index) => (
-                <div key={`first-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
-                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {[
-                { value: "25+", label: "Years of Excellence" },
-                { value: "1.5", label: "Million Sq. Ft. Developed" },
-                { value: "1500+", label: "Happy Families" },
-                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                { value: "22", label: "Successful Projects" },
-                { value: "7", label: "Prime Locations" }
-              ].map((stat, index) => (
-                <div key={`second-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
-                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Program Form */}
-      <section className="py-10 lg:py-12 bg-muted/30">
+      <section className="py-10 lg:py-12 relative bg-[#90D4FF80]">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div 
               className="bg-white/90 backdrop-blur-sm p-8 lg:p-12 shadow-lg border border-border/20"
               style={{ 
-                clipPath: 'polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 0px) 100%, 40px 100%, 0 calc(100% - 40px), 0 0)'
+                borderTopRightRadius: '2rem',
+                borderTopLeftRadius: '0',
+                borderBottomLeftRadius: '2rem',
+                borderBottomRightRadius: '0'
               }}
             >
               <div className="text-center mb-8">
@@ -280,7 +243,7 @@ const LoyaltyProgramme = () => {
           </div>
         </div>
       </section>
-
+      
       <Footer />
     </div>
   );

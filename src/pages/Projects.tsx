@@ -158,51 +158,7 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <section className="py-10 lg:py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="bg-gradient-brand p-8 lg:p-12 shadow-brand overflow-hidden" style={{ borderRadius: '20px 60px 20px 60px' }}>
-            <div className="flex animate-marquee hover:pause">
-              {/* First set of cards */}
-              {[
-                { value: "25+", label: "Years of Excellence" },
-                { value: "1.5", label: "Million Sq. Ft. Developed" },
-                { value: "1500+", label: "Happy Families" },
-                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                { value: "22", label: "Successful Projects" },
-                { value: "7", label: "Prime Locations" }
-              ].map((stat, index) => (
-                <div key={`first-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
-                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {[
-                { value: "25+", label: "Years of Excellence" },
-                { value: "1.5", label: "Million Sq. Ft. Developed" },
-                { value: "1500+", label: "Happy Families" },
-                { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-                { value: "22", label: "Successful Projects" },
-                { value: "7", label: "Prime Locations" }
-              ].map((stat, index) => (
-                <div key={`second-${index}`} className="text-center text-white min-w-[120px] sm:min-w-[160px] lg:min-w-[200px] flex-shrink-0 mx-2 sm:mx-4 lg:mx-6">
-                  <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 sm:mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm lg:text-base opacity-90 whitespace-normal leading-tight">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Stats Section removed for Projects page */}
 
       <main className="container mx-auto px-4 py-10 lg:py-12">
         {/* Page Header */}

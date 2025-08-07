@@ -30,7 +30,7 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src={swastikLogo} alt="Swastik Group" className="h-10 w-auto" />
+            <img src={swastikLogo} alt="Swastik Group" className="h-16 w-auto" />
           </div>
 
           {/* Desktop Navigation */}
@@ -67,7 +67,7 @@ const Header = () => {
             <SheetContent side="right" className="w-80 bg-white">
               <div className="flex flex-col space-y-6 mt-8">
                 <div className="flex items-center space-x-2 mb-6">
-                  <img src={swastikLogo} alt="Swastik Group" className="h-8 w-auto" />
+                  <img src={swastikLogo} alt="Swastik Group" className="h-12 w-auto" />
                 </div>
                 
                 {navigation.map(item => (

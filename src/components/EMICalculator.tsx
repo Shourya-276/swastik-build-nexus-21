@@ -12,7 +12,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const EMICalculator = () => {
+interface EMICalculatorProps {
+  hideHeading?: boolean;
+}
+
+const EMICalculator = ({ hideHeading = false }: EMICalculatorProps) => {
   const [emiAmount, setEmiAmount] = useState(25000);
   const [tenure, setTenure] = useState("240"); // months
   const [interestRate, setInterestRate] = useState(8.5);
@@ -44,15 +48,17 @@ const EMICalculator = () => {
   return (
     <section id="emi-calculator" className="py-20 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-4">
-            EMI Calculator
-          </h2>
-          <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
-          <p className="text-lg text-brand-gray max-w-2xl mx-auto">
-            Calculate your monthly EMI and plan your home purchase with our easy-to-use calculator
-          </p>
-        </div>
+        {!hideHeading && (
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-4">
+              EMI Calculator
+            </h2>
+            <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
+            <p className="text-lg text-brand-gray max-w-2xl mx-auto">
+              Calculate your monthly EMI and plan your home purchase with our easy-to-use calculator
+            </p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* EMI Results */}
