@@ -4,19 +4,27 @@ import { Link } from "react-router-dom";
 import aboutInterior from "@/assets/about-interior.jpg";
 import lifestyleInterior from "@/assets/lifestyle-interior.jpg";
 import ValuesMissionVisionCards from "./ValuesMissionVisionCards";
-
 const AboutUsSection = () => {
-  const stats = [
-    { value: "25+", label: "Years of Excellence" },
-    { value: "1.5", label: "Million Sq. Ft. Developed" },
-    { value: "1500+", label: "Happy Families" },
-    { value: "6.5", label: "Lakh Sq. Ft. Under Construction" },
-    { value: "22", label: "Successful Projects" },
-    { value: "7", label: "Prime Locations" },
-  ];
-
-  return (
-    <section id="about" className="py-20 bg-gradient-light">
+  const stats = [{
+    value: "25+",
+    label: "Years of Excellence"
+  }, {
+    value: "1.5",
+    label: "Million Sq. Ft. Developed"
+  }, {
+    value: "1500+",
+    label: "Happy Families"
+  }, {
+    value: "6.5",
+    label: "Lakh Sq. Ft. Under Construction"
+  }, {
+    value: "22",
+    label: "Successful Projects"
+  }, {
+    value: "7",
+    label: "Prime Locations"
+  }];
+  return <section id="about" className="py-20 bg-gradient-light">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Who we are section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
@@ -54,76 +62,16 @@ const AboutUsSection = () => {
           
           <div className="relative animate-slide-up">
             <div className="relative overflow-hidden custom-image-radius shadow-2xl">
-              <img 
-                src={aboutInterior} 
-                alt="Modern interior architecture"
-                className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius"
-              />
+              <img src={aboutInterior} alt="Modern interior architecture" className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius" />
             </div>
           </div>
         </div>
 
         {/* Values, Vision, Mission section */}
         <div className="mb-16 animate-fade-in">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-4">
-              Our Values, Vision & Mission
-            </h2>
-            <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-6"></div>
-            <p className="text-brand-gray text-lg max-w-2xl mx-auto">
-              The core principles and aspirations that guide our journey in creating exceptional real estate experiences.
-            </p>
-          </div>
           <ValuesMissionVisionCards />
         </div>
-
-        {/* Stats section */}
-        <div className="bg-gradient-brand rounded-2xl p-8 lg:p-12 shadow-brand animate-fade-in">
-          {/* Desktop Grid Layout */}
-          <div className="hidden lg:grid lg:grid-cols-6 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center text-white">
-                <div className="text-3xl lg:text-4xl font-bold mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm lg:text-base opacity-90">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile/Tablet Marquee Layout */}
-          <div className="lg:hidden overflow-hidden">
-            <div className="flex animate-marquee hover:pause">
-              {/* First set of cards */}
-              {stats.map((stat, index) => (
-                <div key={`first-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
-                  <div className="text-3xl font-bold mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm opacity-90 whitespace-normal">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {stats.map((stat, index) => (
-                <div key={`second-${index}`} className="text-center text-white min-w-[160px] flex-shrink-0 mx-4">
-                  <div className="text-3xl font-bold mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm opacity-90 whitespace-normal">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutUsSection;

@@ -66,8 +66,15 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="container mx-auto px-4 lg:px-8">
+        {/* Section Header */}
         <div className="text-center mb-12 animate-fade-in">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
+            Our Projects
+          </h2>
           <div className="w-20 h-1 bg-brand-blue rounded-full mx-auto mb-8"></div>
+        </div>
+        
+        <div className="text-center mb-12 animate-fade-in">
           
           {/* Tab Navigation */}
           <div className="flex justify-center space-x-2 bg-brand-light-gray rounded-lg p-2 inline-flex">
