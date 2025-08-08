@@ -130,31 +130,33 @@ const Projects = () => {
       <Header />
       
       {/* Top Navigation Bar */}
-      <div className="bg-gradient-brand text-white py-3">
-        <div className="container mx-auto px-4 flex items-center space-x-6 text-sm">
-          <button className="flex items-center space-x-1 hover:text-white/80">
-            <span>Location</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <button className="flex items-center space-x-1 hover:text-white/80">
-            <span>Property Type</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <button className="flex items-center space-x-1 hover:text-white/80">
-            <span>Configuration</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <button className="ml-auto">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
+      <div className="py-4">
+        <div className="container mx-auto px-4">
+          <div className="w-full bg-gradient-brand text-white px-6 py-3 flex items-center justify-between gap-6 text-sm md:text-base overflow-x-auto md:overflow-visible rounded-md">
+            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
+              <span>Location</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
+              <span>Property Type</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
+              <span>Configuration</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <button className="flex items-center justify-center ml-0">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -202,7 +204,8 @@ const Projects = () => {
                   style={{
                     borderTopLeftRadius: '2rem',
                     borderTopRightRadius: '0',
-                    clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0% 100%)'
+                    borderBottomLeftRadius: '0',
+                    borderBottomRightRadius: '0'
                   }}
                 />
                 <div className="absolute top-4 left-4 bg-gradient-brand text-white px-3 py-1 rounded-full text-xs font-medium">
@@ -215,35 +218,34 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-
-              <CardContent className="p-6">
-                <div className="space-y-3">
-                  <div>
-                    <h3 className="text-xl font-bold text-brand-navy">{project.name}</h3>
-                    <p className="text-sm text-brand-gray">{project.subtitle}</p>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-brand-gray">Configuration:</span>
-                      <span className="font-medium text-brand-navy">{project.configuration}</span>
+ 
+              <CardContent className="p-0">
+                <div className="bg-[#EEF8FF] p-5">
+                  <div className="space-y-3">
+                    <div>
+                      <h3 className="text-xl font-bold text-brand-navy">{project.name}</h3>
+                      <p className="text-sm text-brand-gray">{project.subtitle}</p>
                     </div>
-                    <div className="text-brand-blue font-bold text-lg">
-                      {project.price}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-brand-gray">Configuration:</span>
+                        <span className="font-medium text-brand-navy">{project.configuration}</span>
+                      </div>
+                      <div className="text-brand-blue font-bold text-lg">
+                        {project.price}
+                      </div>
                     </div>
+                    <p className="text-brand-gray text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      className="w-full mt-4 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Details
+                    </Button>
                   </div>
-
-                  <p className="text-brand-gray text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <Button 
-                    variant="outline" 
-                    className="w-full mt-4 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white"
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    View Details
-                  </Button>
                 </div>
               </CardContent>
             </Card>

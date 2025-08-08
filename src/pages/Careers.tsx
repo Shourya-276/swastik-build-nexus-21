@@ -125,15 +125,19 @@ const Careers = () => {
       </section>
 
       {/* Career Detail Form Section */}
-      <section className="py-10 lg:py-12">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div 
-              className="bg-white/90 backdrop-blur-sm p-8 lg:p-12 shadow-lg border border-border/20"
-              style={{ 
-                clipPath: 'polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 0px) 100%, 40px 100%, 0 calc(100% - 40px), 0 0)'
-              }}
-            >
+      <section className="py-10 lg:py-12 relative bg-[#EEF8FF]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#EEF8FF]">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div 
+                className="bg-white/90 backdrop-blur-sm p-8 lg:p-12 shadow-lg border border-border/20"
+                style={{ 
+                  borderTopRightRadius: '3rem',
+                  borderTopLeftRadius: '0',
+                  borderBottomLeftRadius: '3rem',
+                  borderBottomRightRadius: '0'
+                }}
+              >
               <div className="text-center mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-4">
                   Career Detail Form
@@ -223,6 +227,7 @@ const Careers = () => {
                   </Button>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         </div>

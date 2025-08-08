@@ -188,8 +188,9 @@ const AboutUs = () => {
       <Header />
       
       {/* Our Business Section */}
-      <section className="py-10 lg:py-12 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-10 lg:py-12 relative bg-[#EEF8FF]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#EEF8FF]">
+          <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-6 animate-fade-in">
               <div>
@@ -211,6 +212,7 @@ const AboutUs = () => {
                 <img src={aboutInterior} alt="Business Overview" className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500 custom-image-radius" />
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
@@ -263,8 +265,9 @@ const AboutUs = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="py-10 lg:py-12 bg-muted/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-10 lg:py-12 relative bg-[#EEF8FF]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#EEF8FF]">
+          <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="relative animate-slide-up">
               <div className="relative overflow-hidden custom-image-radius shadow-2xl">
@@ -286,6 +289,7 @@ const AboutUs = () => {
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
