@@ -5,7 +5,7 @@ import AboutUsSection from "@/components/AboutUsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import StackedCards from "@/components/StackedCards";
-import ValuesMissionVisionCards from "@/components/ValuesMissionVisionCards";
+
 import PresencesSection from "@/components/PresencesSection";
 import SocialMediaSection from "@/components/SocialMediaSection";
 import BlogsSection from "@/components/BlogsSection";

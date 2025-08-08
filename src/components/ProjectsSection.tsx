@@ -113,11 +113,20 @@ const ProjectsSection = () => {
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
+              {/* New Release Tag for first project */}
+              {index === 0 && (
+                <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg group-hover:animate-bounce">
+                  NEW RELEASE
+                </div>
+              )}
+              
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-64 object-cover transition-transform duration-500 ${
+                    index === 0 ? 'group-hover:scale-125' : 'group-hover:scale-110'
+                  }`}
                   style={{
                     borderTopLeftRadius: '2rem',
                     borderTopRightRadius: '0',

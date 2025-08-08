@@ -16,6 +16,7 @@ import amenityPool from "@/assets/amenity-pool.jpg";
 import amenityGym from "@/assets/amenity-gym.jpg";
 import socialInterior1 from "@/assets/social-interior-1.jpg";
 import ProjectsSection from "@/components/ProjectsSection";
+import ConsultantFlowingTabs from "@/components/ConsultantFlowingTabs";
 
 const ProjectDetails = () => {
   const { projectId } = useParams();
@@ -520,6 +521,11 @@ const ProjectDetails = () => {
           {/* FAQ section (copied from home) */}
           <div className="mt-12">
             <FAQSection />
+          </div>
+          
+          {/* Consultant Flowing Tabs */}
+          <div className="mt-12">
+            <ConsultantFlowingTabs />
           </div>
         </div>
       </section>

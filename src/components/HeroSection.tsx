@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-cityscape.jpg";
@@ -19,22 +18,48 @@ const HeroSection = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20" />
         </div>
-        {/* Ribbon at the bottom */}
-        <div className="absolute left-0 right-0 bottom-0 z-20 w-full bg-brand-blue flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8 px-4 py-3 md:py-4">
-          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none w-full md:w-auto justify-center">
-            Location <span className="ml-1">&#9662;</span>
-          </button>
-          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none w-full md:w-auto justify-center">
-            Property Type <span className="ml-1">&#9662;</span>
-          </button>
-          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none w-full md:w-auto justify-center">
-            Configuration <span className="ml-1">&#9662;</span>
-          </button>
-          <button className="flex items-center justify-center text-white px-4 py-2 focus:outline-none w-full md:w-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
-            </svg>
-          </button>
+        
+        {/* Ribbon at the bottom - Scrollable on mobile */}
+        <div className="absolute left-0 right-0 bottom-0 z-20 w-full bg-brand-blue py-3 md:py-4">
+          {/* Mobile: Horizontal scrollable */}
+          <div className="block md:hidden">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex items-center gap-4 px-4 min-w-max">
+                <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                  Location <span className="ml-1">&#9662;</span>
+                </button>
+                <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                  Property Type <span className="ml-1">&#9662;</span>
+                </button>
+                <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                  Configuration <span className="ml-1">&#9662;</span>
+                </button>
+                <button className="flex items-center justify-center text-white px-4 py-2 focus:outline-none flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Original layout */}
+          <div className="hidden md:flex items-center justify-center gap-8 px-4">
+            <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+              Location <span className="ml-1">&#9662;</span>
+            </button>
+            <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+              Property Type <span className="ml-1">&#9662;</span>
+            </button>
+            <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+              Configuration <span className="ml-1">&#9662;</span>
+            </button>
+            <button className="flex items-center justify-center text-white px-4 py-2 focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Fixed Enquiry Button */}

@@ -129,34 +129,46 @@ const Projects = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Top Navigation Bar */}
-      <div className="py-4">
-        <div className="container mx-auto px-4">
-          <div className="w-full bg-gradient-brand text-white px-6 py-3 flex items-center justify-between gap-6 text-sm md:text-base overflow-x-auto md:overflow-visible rounded-md">
-            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
-              <span>Location</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
-              <span>Property Type</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <button className="flex items-center gap-1 whitespace-nowrap hover:text-white/80">
-              <span>Configuration</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <button className="flex items-center justify-center ml-0">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
+      {/* Top Navigation Bar - Ribbon Style */}
+      <div className="w-full bg-gradient-brand py-3 md:py-4">
+        {/* Mobile: Horizontal scrollable */}
+        <div className="block md:hidden">
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex items-center gap-4 px-4 min-w-max">
+              <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                Location <span className="ml-1">&#9662;</span>
+              </button>
+              <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                Property Type <span className="ml-1">&#9662;</span>
+              </button>
+              <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none whitespace-nowrap flex-shrink-0">
+                Configuration <span className="ml-1">&#9662;</span>
+              </button>
+              <button className="flex items-center justify-center text-white px-4 py-2 focus:outline-none flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+                </svg>
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* Desktop: Original layout */}
+        <div className="hidden md:flex items-center justify-center gap-8 px-4">
+          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+            Location <span className="ml-1">&#9662;</span>
+          </button>
+          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+            Property Type <span className="ml-1">&#9662;</span>
+          </button>
+          <button className="flex items-center gap-2 text-white font-medium px-4 py-2 focus:outline-none">
+            Configuration <span className="ml-1">&#9662;</span>
+          </button>
+          <button className="flex items-center justify-center text-white px-4 py-2 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+            </svg>
+          </button>
         </div>
       </div>
 

@@ -5,7 +5,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import BlogsSection from '@/components/BlogsSection';
 import FAQSection from '@/components/FAQSection';
-import ValuesMissionVisionCards from '@/components/ValuesMissionVisionCards';
+
 import StackedCards from '@/components/StackedCards';
 import aboutInterior from '@/assets/about-interior.jpg';
 import lifestyleInterior from '@/assets/lifestyle-interior.jpg';
