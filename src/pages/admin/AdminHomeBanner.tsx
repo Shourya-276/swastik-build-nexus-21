@@ -1,31 +1,56 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const AdminHomeBanner = () => {
   const [bannerData, setBannerData] = useState({
     heading: 'Find Your Dream Home Today',
     subtext: 'Discover premium residential properties in Mumbai\'s most sought-after locations',
-    backgroundImage: null as File | null
+    backgroundImage: null,
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setBannerData(prev => ({ ...prev, [field]: value }));
+  const handleInputChange = (field, value) => {
+    setBannerData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      setBannerData(prev => ({ ...prev, backgroundImage: file }));
+      setBannerData((prev) => ({ ...prev, backgroundImage: file }));
     }
   };
 
-  const handleSave = () => {
-    toast.success('Home banner updated successfully');
+  const handleSave = async () => {
+    try {
+      if (!bannerData.backgroundImage) {
+        toast.error('Please select an image');
+        return;
+      }
+      if (!bannerData.heading || !bannerData.subtext) {
+        toast.error('Heading and subtext are required');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('heading', bannerData.heading);
+      formData.append('subtext', bannerData.subtext);
+      formData.append('backgroundImage', bannerData.backgroundImage);
+
+      const response = await axios.post('http://localhost:5000/api/content/banner', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      toast.success('Home banner updated successfully');
+      console.log('Saved banner:', response.data.banner);
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Failed to update banner: ' + (error.response?.data?.message || error.message));
+    }
   };
 
   return (

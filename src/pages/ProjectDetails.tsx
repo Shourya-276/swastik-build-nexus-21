@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -13,75 +13,43 @@ import lifestyleInterior from "@/assets/lifestyle-interior.jpg";
 import amenityPool from "@/assets/amenity-pool.jpg";
 import amenityGym from "@/assets/amenity-gym.jpg";
 import socialInterior1 from "@/assets/social-interior-1.jpg";
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const ProjectDetails = () => {
-  const { projectId } = useParams();
+  const { id } = useParams();
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeAmenityTab, setActiveAmenityTab] = useState("podium");
   const [activeFloorPlanTab, setActiveFloorPlanTab] = useState("a-wing");
 
-  // Mock project data - in real app, this would come from API
-  const projectData = {
-    "swastik-elite": {
-      name: "Swastik Elite",
-      location: "Ghatkopar West",
-      image: projectTower1,
-      description: "Be treasured with a beloved neighbourhood that ensures all good magnificent tower of 22 storys.",
-      fullDescription: "The minute you step in from the colossal gates, the massive living space will pause your senses. This magnificent tower of 22 storys will ensure that you are treated to an experience that is tailored to your noble tastes. Walk from room to room amidst rich textures and gorgeous interiors. Your palatial abode has been curated with the finest amenities from the mines of excellence.",
-      connectivities: [
-        "2 mins from railway station / metro station",
-        "2 mins from Eastern Express Highway", 
-        "Easy access to JVLR & Eastern Freeway",
-        "10 mins to Powai"
-      ],
-      configurations: [
-        { type: "1 BHK", area: "418 RCA Sq. Ft", price: "Click for price" },
-        { type: "2 BHK", area: "579 RCA Sq. Ft", price: "Click for price" },
-        { type: "3 BHK", area: "811 RCA Sq. Ft", price: "Click for price" }
-      ]
-    },
-    "swastik-heights": {
-      name: "Swastik Heights", 
-      location: "Vikhroli East",
-      image: projectTower2,
-      description: "Premium high-rise apartments with scenic views and world-class amenities.",
-      fullDescription: "Experience luxury living at its finest with panoramic city views and meticulously designed spaces that blend comfort with elegance.",
-      connectivities: [
-        "3 mins from Vikhroli Railway Station",
-        "Direct access to Eastern Express Highway",
-        "Close to R City Mall",
-        "15 mins to BKC"
-      ],
-      configurations: [
-        { type: "2 BHK", area: "650 RCA Sq. Ft", price: "Click for price" },
-        { type: "3 BHK", area: "920 RCA Sq. Ft", price: "Click for price" }
-      ]
-    },
-    "swastik-grandeur": {
-      name: "Swastik Grandeur",
-      location: "Mulund West", 
-      image: projectTower3,
-      description: "Contemporary living spaces with world-class facilities and modern architecture.",
-      fullDescription: "Discover a new dimension of luxury with spacious homes designed for the modern family, featuring premium finishes and state-of-the-art amenities.",
-      connectivities: [
-        "2 mins from Mulund Railway Station",
-        "Easy access to LBS Marg",
-        "Close to R Mall Mulund", 
-        "Quick connectivity to Thane"
-      ],
-      configurations: [
-        { type: "1 BHK", area: "485 RCA Sq. Ft", price: "Click for price" },
-        { type: "2 BHK", area: "720 RCA Sq. Ft", price: "Click for price" },
-        { type: "3 BHK", area: "1050 RCA Sq. Ft", price: "Click for price" }
-      ]
-    }
-  };
+  // Fetch project data
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        // Validate ID
+        const parsedId = parseInt(id, 10);
+        if (isNaN(parsedId) || parsedId <= 0) {
+          console.warn('Invalid project ID:', id);
+          toast.error('Invalid project ID');
+          setLoading(false);
+          return;
+        }
+        console.log(`Fetching project with ID: ${parsedId}`);
+        const response = await axios.get(`http://localhost:5000/api/content/projects/id/${parsedId}`);
+        console.log('Fetched project:', response.data);
+        setProject(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching project:', error);
+        toast.error('Failed to fetch project details: ' + (error.response?.data?.message || error.message));
+        setLoading(false);
+      }
+    };
+    fetchProject();
+  }, [id]);
 
-  const project = projectData[projectId as keyof typeof projectData];
-
-  if (!project) {
-    return <div>Project not found</div>;
-  }
-
+  // Mock amenities and gallery (kept as is)
   const amenities = {
     podium: [
       "Premier Gymnasium", "Children's Play Area", "Day Care", "Indoor Games",
@@ -96,6 +64,23 @@ const ProjectDetails = () => {
 
   const galleryImages = [lifestyleInterior, amenityPool, amenityGym, socialInterior1];
 
+  // Map database configurations to match UI
+  const mapConfigurations = (configs) => {
+    return configs.map((type, index) => ({
+      type,
+      area: "N/A", // Replace with actual area if available in DB
+      price: "Click for price"
+    }));
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -103,7 +88,7 @@ const ProjectDetails = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] overflow-hidden">
         <img
-          src={project.image}
+          src={project.image_url || projectTower1}
           alt={project.name}
           className="w-full h-full object-cover"
         />
@@ -137,7 +122,7 @@ const ProjectDetails = () => {
         <section className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <img
-              src={project.image}
+              src={project.image_url || projectTower1}
               alt="Project Overview"
               className="w-full rounded-2xl shadow-lg"
             />
@@ -148,7 +133,7 @@ const ProjectDetails = () => {
             <div className="w-16 h-1 bg-primary mb-6" />
             <p className="text-lg font-medium mb-4">{project.description}</p>
             <p className="text-muted-foreground leading-relaxed">
-              {project.fullDescription}
+              {project.description}
             </p>
           </div>
         </section>
@@ -163,23 +148,25 @@ const ProjectDetails = () => {
               <p className="text-lg mb-6">
                 Work, play, entertainment, shopping, schooling, health care, metro, brisk
                 connectivity and all other amenities which make our lives scattered are
-                now available near Swastik Platinum.
+                now available near {project.name}.
               </p>
               <p className="text-lg font-medium mb-6">
                 True to our times, true to commitments, nestled in nature, steeped in
-                convenience, completely secure - Swastik Platinum your dream
+                convenience, completely secure - {project.name} your dream
                 residence in more than just one way.
               </p>
               
               <h3 className="text-xl font-bold mb-4">Platinum connections - Key destinations on your doorstep</h3>
               
               <ul className="space-y-3">
-                {project.connectivities.map((connectivity, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full" />
-                    <span>{connectivity}</span>
-                  </li>
-                ))}
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-primary rounded-full" />
+                  <span>5 mins from nearest railway station</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-primary rounded-full" />
+                  <span>Easy access to major highways</span>
+                </li>
               </ul>
             </div>
             
@@ -187,7 +174,7 @@ const ProjectDetails = () => {
               <div className="w-full h-96 bg-gradient-to-br from-orange-200 to-orange-400 rounded-full flex items-center justify-center">
                 <div className="text-center text-white">
                   <div className="text-2xl font-bold mb-2">Location Map</div>
-                  <div className="text-lg">Interactive map coming soon</div>
+                  <div>Interactive map coming soon</div>
                 </div>
               </div>
             </div>
@@ -257,7 +244,7 @@ const ProjectDetails = () => {
             </div>
             
             <div className="grid grid-cols-1 gap-3">
-              {amenities[activeAmenityTab as keyof typeof amenities].map((amenity, index) => (
+              {amenities[activeAmenityTab].map((amenity, index) => (
                 <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                   <Badge variant="secondary" className="bg-primary text-white px-2 py-1 text-sm">
                     {index + 1}.
@@ -321,7 +308,7 @@ const ProjectDetails = () => {
               </div>
               
               <div className="space-y-4">
-                {project.configurations.map((config, index) => (
+                {mapConfigurations(project.configurations).map((config, index) => (
                   <Card key={index} className="border border-muted">
                     <CardContent className="flex items-center justify-between p-4">
                       <div className="flex items-center gap-4">
