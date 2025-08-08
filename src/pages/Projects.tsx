@@ -237,14 +237,14 @@ const Projects = () => {
                     <div>
                       <h3 className="text-xl font-bold text-brand-navy">{project.name}</h3>
                       <p className="text-sm text-brand-gray">{project.subtitle}</p>
+                      <div className="text-brand-blue font-bold text-lg mt-2">
+                        {project.price}
+                      </div>
                     </div>
                     <div className="space-y-2">
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-brand-gray">Configuration:</span>
-                        <span className="font-medium text-brand-navy">{project.configuration}</span>
-                      </div>
-                      <div className="text-brand-blue font-bold text-lg">
-                        {project.price}
+                      <div className="flex justify-between items-center">
+                        <span className="text-brand-gray text-base">Configuration:</span>
+                        <span className="font-bold text-brand-navy text-lg">{project.configuration}</span>
                       </div>
                     </div>
                     <p className="text-brand-gray text-sm leading-relaxed">

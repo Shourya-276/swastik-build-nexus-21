@@ -405,28 +405,31 @@ const ProjectDetails = () => {
 
           {/* MAHARERA Details */}
           <div
-            className="mt-10 md:mt-12 bg-primary p-6 md:p-8 text-white"
+            className="mt-10 md:mt-12 bg-gradient-brand p-6 md:p-8 text-white shadow-brand"
             style={{
-              borderTopLeftRadius: '3rem',
-              borderTopRightRadius: '0',
-              borderBottomRightRadius: '3rem',
-              borderBottomLeftRadius: '0',
+              borderRadius: '80px 16px 80px 16px',
             }}
           >
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
-              <div>
-                <div className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-lg flex items-center justify-center mb-4">
-                  <div className="text-center text-black text-xs">
-                    <div className="font-bold">QR Code</div>
-                    <div>MahaRERA</div>
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 items-center">
+              <div className="flex md:justify-start justify-center">
+                <div className="inline-flex flex-col items-center">
+                  <div className="bg-white rounded-xl p-2 shadow-md">
+                    <img
+                      src="/lovable-uploads/919fa5be-99f1-4413-a367-99083213a54f.png"
+                      alt="MahaRERA QR code"
+                      className="w-28 h-28 md:w-36 md:h-36 object-contain"
+                    />
                   </div>
+                  <p className="mt-2 text-xs text-white/90">Maharera QR code</p>
                 </div>
               </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold">MAHARERA DETAILS</h3>
-                <p>https://maharera.mahaonline.gov.in</p>
-                <p>MahaRERA No.: P51800045216</p>
-                <p>Project Finance by: Bajaj Housing Finance Limited</p>
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold tracking-wide">MAHARERA DETAILS</h3>
+                <a href="https://maharera.mahaonline.gov.in" target="_blank" rel="noreferrer" className="block underline font-semibold text-white">
+                  https://maharera.mahaonline.gov.in
+                </a>
+                <p className="font-medium">MahaRERA No.: P51800045216</p>
+                <p className="font-medium">Project Finance by: Bajaj Housing Finance Limited</p>
                 <p className="text-sm opacity-90 mt-4">
                   <strong>Disclaimer:</strong> This is not a legal document and is for representation purpose only. All the images and information are for reference purpose only and subject to change without prior notice. The Promoter/Developer reserves the right to make any alterations, additions, or amendments as may be required. T&C apply.
                 </p>

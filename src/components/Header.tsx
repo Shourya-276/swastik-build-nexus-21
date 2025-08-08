@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import swastikLogo from "@/assets/swastik-logo.png";
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigation = [{
@@ -25,12 +25,12 @@ const Header = () => {
     name: "Careers",
     href: "/careers"
   }];
-  return <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
+    return <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <img src={swastikLogo} alt="Swastik Group" className="h-16 w-auto" />
+            <img src="/lovable-uploads/86d70469-21c7-4d7e-9217-745f1e072a5a.png" alt="Swastik Group" className="h-20 w-auto" />
           </div>
 
           {/* Desktop Navigation */}
@@ -67,7 +67,7 @@ const Header = () => {
             <SheetContent side="right" className="w-80 bg-white">
               <div className="flex flex-col space-y-6 mt-8">
                 <div className="flex items-center space-x-2 mb-6">
-                  <img src={swastikLogo} alt="Swastik Group" className="h-12 w-auto" />
+                  <img src="/lovable-uploads/86d70469-21c7-4d7e-9217-745f1e072a5a.png" alt="Swastik Group" className="h-16 w-auto" />
                 </div>
                 
                 {navigation.map(item => (
