@@ -7,7 +7,6 @@ import {
   MapPin,
   FileText,
   MessageSquare,
-  Settings,
   LogOut,
   Info,
   BarChart3,
@@ -30,21 +29,15 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 
 const menuItems = [
-  { title: 'Dashboard', url: '/admin', icon: Home },
   { title: 'Home Banner', url: '/admin/home-banner', icon: Info },
   { title: 'Home Page', url: '/admin/home-page', icon: Home },
   { title: 'About Us', url: '/admin/about-us', icon: Users },
-  { title: 'Who We Are', url: '/admin/who-we-are', icon: Users },
-  { title: 'Values, Vision & Mission', url: '/admin/values-vision-mission', icon: Info },
-  { title: 'Our Business', url: '/admin/our-business', icon: Building2 },
   { title: 'Projects Description', url: '/admin/projects-description', icon: FileText },
-  { title: 'Our Presence', url: '/admin/presence', icon: MapPin },
   { title: 'Social Media', url: '/admin/social-media', icon: Share2 },
   { title: 'Statistics', url: '/admin/statistics', icon: BarChart3 },
   { title: 'Projects', url: '/admin/projects', icon: Building2 },
   { title: 'Blogs', url: '/admin/blogs', icon: FileText },
   { title: 'FAQs', url: '/admin/faqs', icon: MessageSquare },
-  { title: 'Settings', url: '/admin/settings', icon: Settings },
 ];
 
 export function AdminSidebar() {

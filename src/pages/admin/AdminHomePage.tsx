@@ -5,7 +5,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import axios from 'axios';
 
 const AdminHomePage = () => {
   const [homePageData, setHomePageData] = useState({
@@ -20,27 +21,6 @@ Our commitment to excellence and innovation drives us to create spaces that not 
       vision: "To be Mumbai's most trusted real estate developer, creating sustainable communities.",
       mission: "Building quality homes that blend contemporary design with innovation and sustainability.",
       image: null as File | null
-    },
-    whyChooseUs: {
-      description: "Our projects are known for their top-notch craftsmanship, smart design, and solid construction, giving customers great value.",
-      features: [
-        {
-          title: "Timely Delivery",
-          description: "We're proud to finish projects on time within the delivery date."
-        },
-        {
-          title: "Professional Team",
-          description: "Our experienced team always aims for excellence, from planning projects to helping customers."
-        },
-        {
-          title: "Market Leadership",
-          description: "We're leaders in redevelopment, known for quality work, on-time delivery, and being open with customers and partners."
-        },
-        {
-          title: "Minimal Bureaucracy",
-          description: "Our simple processes and 24/7 help make things easy for clients, creating a friendly and supportive atmosphere."
-        }
-      ]
     },
     ourPresence: {
       locations: ["Chembur", "Ghatkopar", "Vikhroli", "Mulund", "Powai", "Andheri"]
@@ -68,18 +48,6 @@ Our commitment to excellence and innovation drives us to create spaces that not 
         }
       }));
     }
-  };
-
-  const handleFeatureChange = (index: number, field: string, value: string) => {
-    setHomePageData(prev => ({
-      ...prev,
-      whyChooseUs: {
-        ...prev.whyChooseUs,
-        features: prev.whyChooseUs.features.map((feature, i) =>
-          i === index ? { ...feature, [field]: value } : feature
-        )
-      }
-    }));
   };
 
   const handleLocationChange = (index: number, value: string) => {
@@ -111,8 +79,59 @@ Our commitment to excellence and innovation drives us to create spaces that not 
     }));
   };
 
-  const handleSave = () => {
-    toast.success('Home page content updated successfully');
+  const handleSave = async (section: string) => {
+    try {
+      if (section === 'whoWeAre') {
+        if (!homePageData.whoWeAre.image) {
+          toast.error('Please select an image for Who We Are');
+          return;
+        }
+        if (!homePageData.whoWeAre.content) {
+          toast.error('Content is required for Who We Are');
+          return;
+        }
+        const formData = new FormData();
+        formData.append('content', homePageData.whoWeAre.content);
+        formData.append('image', homePageData.whoWeAre.image);
+        const response = await axios.post('http://localhost:5000/api/content/who-we-are', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        toast.success('Who We Are updated successfully');
+        console.log('Saved who_we_are:', response.data.entry);
+      } else if (section === 'valuesVisionMission') {
+        if (!homePageData.valuesVisionMission.image) {
+          toast.error('Please select an image for Values, Vision, Mission');
+          return;
+        }
+        if (!homePageData.valuesVisionMission.values || !homePageData.valuesVisionMission.vision || !homePageData.valuesVisionMission.mission) {
+          toast.error('All fields are required for Values, Vision, Mission');
+          return;
+        }
+        const formData = new FormData();
+        formData.append('values', homePageData.valuesVisionMission.values);
+        formData.append('vision', homePageData.valuesVisionMission.vision);
+        formData.append('mission', homePageData.valuesVisionMission.mission);
+        formData.append('image', homePageData.valuesVisionMission.image);
+        const response = await axios.post('http://localhost:5000/api/content/values-vision-mission', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        toast.success('Values, Vision, Mission updated successfully');
+        console.log('Saved values_vision_mission:', response.data.entry);
+      } else if (section === 'ourPresence') {
+        if (!homePageData.ourPresence.locations.length) {
+          toast.error('At least one location is required');
+          return;
+        }
+        const response = await axios.post('http://localhost:5000/api/content/our-presence', {
+          locations: homePageData.ourPresence.locations
+        });
+        toast.success('Our Presence updated successfully');
+        console.log('Saved our_presence:', response.data.entry);
+      }
+    } catch (error) {
+      console.error(`Save error for ${section}:`, error);
+      toast.error(`Failed to update ${section}: ` + (error.response?.data?.message || error.message));
+    }
   };
 
   return (
@@ -125,10 +144,9 @@ Our commitment to excellence and innovation drives us to create spaces that not 
       </div>
 
       <Tabs defaultValue="who-we-are" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="who-we-are">Who We Are</TabsTrigger>
           <TabsTrigger value="values-vision">Values & Vision</TabsTrigger>
-          <TabsTrigger value="why-choose-us">Why Choose Us</TabsTrigger>
           <TabsTrigger value="our-presence">Our Presence</TabsTrigger>
         </TabsList>
 
@@ -173,6 +191,9 @@ Our commitment to excellence and innovation drives us to create spaces that not 
                     placeholder="Enter the content about your company..."
                   />
                 </div>
+                <Button onClick={() => handleSave('whoWeAre')} size="lg">
+                  Save Who We Are
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -236,56 +257,12 @@ Our commitment to excellence and innovation drives us to create spaces that not 
                     onChange={(e) => handleInputChange('valuesVisionMission', 'mission', e.target.value)}
                   />
                 </div>
+                <Button onClick={() => handleSave('valuesVisionMission')} size="lg">
+                  Save Values, Vision, Mission
+                </Button>
               </CardContent>
             </Card>
           </div>
-        </TabsContent>
-
-        <TabsContent value="why-choose-us" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Why Choose Us Content</CardTitle>
-              <CardDescription>
-                Edit the main description and feature cards
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <Label htmlFor="why-choose-description">Main Description</Label>
-                <Textarea
-                  id="why-choose-description"
-                  rows={3}
-                  value={homePageData.whyChooseUs.description}
-                  onChange={(e) => handleInputChange('whyChooseUs', 'description', e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold">Feature Cards</h4>
-                {homePageData.whyChooseUs.features.map((feature, index) => (
-                  <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg">
-                    <div>
-                      <Label htmlFor={`feature-title-${index}`}>Feature Title</Label>
-                      <Input
-                        id={`feature-title-${index}`}
-                        value={feature.title}
-                        onChange={(e) => handleFeatureChange(index, 'title', e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor={`feature-description-${index}`}>Feature Description</Label>
-                      <Textarea
-                        id={`feature-description-${index}`}
-                        rows={3}
-                        value={feature.description}
-                        onChange={(e) => handleFeatureChange(index, 'description', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
         </TabsContent>
 
         <TabsContent value="our-presence" className="space-y-6">
@@ -316,16 +293,13 @@ Our commitment to excellence and innovation drives us to create spaces that not 
               <Button variant="outline" onClick={addLocation}>
                 Add Location
               </Button>
+              <Button onClick={() => handleSave('ourPresence')} size="lg">
+                Save Our Presence
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="flex justify-end">
-        <Button onClick={handleSave} size="lg">
-          Save All Changes
-        </Button>
-      </div>
     </div>
   );
 };

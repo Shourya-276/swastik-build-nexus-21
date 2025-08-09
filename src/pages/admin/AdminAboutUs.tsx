@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import axios from 'axios';
 
 const AdminAboutUs = () => {
   const [aboutUsData, setAboutUsData] = useState({
@@ -75,8 +76,62 @@ const AdminAboutUs = () => {
     }));
   };
 
-  const handleSave = () => {
-    toast.success('About Us page content updated successfully');
+  const handleSave = async (section: string) => {
+    try {
+      if (section === 'ourBusiness') {
+        if (!aboutUsData.ourBusiness.image) {
+          toast.error('Please select an image for Our Business');
+          return;
+        }
+        if (!aboutUsData.ourBusiness.description) {
+          toast.error('Description is required for Our Business');
+          return;
+        }
+        const formData = new FormData();
+        formData.append('description', aboutUsData.ourBusiness.description);
+        formData.append('image', aboutUsData.ourBusiness.image);
+        const response = await axios.post('http://localhost:5000/api/content/our-business', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        toast.success('Our Business updated successfully');
+        console.log('Saved our_business:', response.data.entry);
+      } else if (section === 'aboutUs') {
+        if (!aboutUsData.aboutUs.image) {
+          toast.error('Please select an image for About Us');
+          return;
+        }
+        if (!aboutUsData.aboutUs.content) {
+          toast.error('Content is required for About Us');
+          return;
+        }
+        const formData = new FormData();
+        formData.append('content', aboutUsData.aboutUs.content);
+        formData.append('image', aboutUsData.aboutUs.image);
+        const response = await axios.post('http://localhost:5000/api/content/about-us', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        toast.success('About Us updated successfully');
+        console.log('Saved about_us:', response.data.entry);
+      } else if (section === 'whyChooseUs') {
+        if (!aboutUsData.whyChooseUs.description) {
+          toast.error('Description is required for Why Choose Us');
+          return;
+        }
+        if (!aboutUsData.whyChooseUs.features.length) {
+          toast.error('At least one feature is required for Why Choose Us');
+          return;
+        }
+        const response = await axios.post('http://localhost:5000/api/content/why-choose-us', {
+          description: aboutUsData.whyChooseUs.description,
+          features: aboutUsData.whyChooseUs.features
+        });
+        toast.success('Why Choose Us updated successfully');
+        console.log('Saved why_choose_us:', response.data.entry);
+      }
+    } catch (error) {
+      console.error(`Save error for ${section}:`, error);
+      toast.error(`Failed to update ${section}: ` + (error.response?.data?.message || error.message));
+    }
   };
 
   return (
@@ -118,6 +173,9 @@ const AdminAboutUs = () => {
                     Recommended size: 600x400px or similar aspect ratio (Max: 5MB)
                   </p>
                 </div>
+                <Button onClick={() => handleSave('ourBusiness')} size="lg">
+                  Save Our Business
+                </Button>
               </CardContent>
             </Card>
 
@@ -167,6 +225,9 @@ const AdminAboutUs = () => {
                     Recommended size: 600x400px or similar aspect ratio (Max: 5MB)
                   </p>
                 </div>
+                <Button onClick={() => handleSave('aboutUs')} size="lg">
+                  Save About Us
+                </Button>
               </CardContent>
             </Card>
 
@@ -236,16 +297,13 @@ const AdminAboutUs = () => {
                   </div>
                 ))}
               </div>
+              <Button onClick={() => handleSave('whyChooseUs')} size="lg">
+                Save Why Choose Us
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
-
-      <div className="flex justify-end">
-        <Button onClick={handleSave} size="lg">
-          Save All Changes
-        </Button>
-      </div>
     </div>
   );
 };

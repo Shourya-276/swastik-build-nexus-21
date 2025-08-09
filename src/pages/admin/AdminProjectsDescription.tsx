@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const AdminProjectsDescription = () => {
   const [projectsData, setProjectsData] = useState({
@@ -14,8 +15,21 @@ const AdminProjectsDescription = () => {
     setProjectsData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSave = () => {
-    toast.success('Our Projects Description section updated successfully');
+  const handleSave = async () => {
+    try {
+      if (!projectsData.description) {
+        toast.error('Description is required');
+        return;
+      }
+      const response = await axios.post('http://localhost:5000/api/content/projects-description', {
+        description: projectsData.description
+      });
+      toast.success('Our Projects Description section updated successfully');
+      console.log('Saved projects_description:', response.data.entry);
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Failed to update Projects Description: ' + (error.response?.data?.message || error.message));
+    }
   };
 
   return (
@@ -46,6 +60,9 @@ const AdminProjectsDescription = () => {
                 placeholder="Enter the projects description..."
               />
             </div>
+            <Button onClick={handleSave} size="lg">
+              Save Changes
+            </Button>
           </CardContent>
         </Card>
 
@@ -65,12 +82,6 @@ const AdminProjectsDescription = () => {
             </div>
           </CardContent>
         </Card>
-      </div>
-
-      <div className="flex justify-end">
-        <Button onClick={handleSave} size="lg">
-          Save Changes
-        </Button>
       </div>
     </div>
   );

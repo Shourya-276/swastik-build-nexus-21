@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Upload, X } from 'lucide-react';
+import axios from 'axios';
 
 const AdminSocialMedia = () => {
   const [socialMediaData, setSocialMediaData] = useState({
@@ -13,7 +14,8 @@ const AdminSocialMedia = () => {
       { id: 2, file: null as File | null, alt: 'Luxury swimming pool' },
       { id: 3, file: null as File | null, alt: 'Modern residential tower' },
       { id: 4, file: null as File | null, alt: 'State-of-the-art gym' },
-      { id: 5, file: null as File | null, alt: 'Contemporary building exterior' }
+      { id: 5, file: null as File | null, alt: 'Contemporary building exterior' },
+      { id: 6, file: null as File | null, alt: 'Elegant home interior' }
     ]
   });
 
@@ -44,8 +46,55 @@ const AdminSocialMedia = () => {
     }));
   };
 
-  const handleSave = () => {
-    toast.success('Social media post images updated successfully');
+  const handleSave = async () => {
+    try {
+      const formData = new FormData();
+      const imagesWithFiles = socialMediaData.images.filter(img => img.file);
+      const files = imagesWithFiles.map(img => img.file);
+      const altTexts = imagesWithFiles.map(img => img.alt || '');
+
+      if (files.length === 0) {
+        toast.error('At least one image is required');
+        return;
+      }
+
+      if (files.length > 6) {
+        toast.error('Maximum 6 images allowed');
+        return;
+      }
+
+      if (altTexts.some(alt => !alt)) {
+        toast.error('All uploaded images must have alt text');
+        return;
+      }
+
+      files.forEach(file => {
+        formData.append('images', file);
+      });
+      formData.append('alt_texts', JSON.stringify(altTexts));
+
+      const response = await axios.post('http://localhost:5000/api/content/social-media-posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
+      toast.success('Social media post images updated successfully');
+      console.log('Saved social_media_posts:', response.data.entry);
+
+      // Reset form after successful save
+      setSocialMediaData({
+        images: [
+          { id: 1, file: null, alt: 'Modern living room interior' },
+          { id: 2, file: null, alt: 'Luxury swimming pool' },
+          { id: 3, file: null, alt: 'Modern residential tower' },
+          { id: 4, file: null, alt: 'State-of-the-art gym' },
+          { id: 5, file: null, alt: 'Contemporary building exterior' },
+          { id: 6, file: null, alt: 'Elegant home interior' }
+        ]
+      });
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Failed to update social media posts: ' + (error.response?.data?.message || error.message));
+    }
   };
 
   return (
@@ -64,7 +113,7 @@ const AdminSocialMedia = () => {
               <CardTitle className="text-lg">Image {index + 1}</CardTitle>
               <CardDescription>
                 {index === 0 ? 'Main featured image (larger display)' : 
-                 index === 3 ? 'Wide image (spans 2 columns)' : 
+                 index === 5 ? 'Second large image (larger display)' : 
                  'Standard image'}
               </CardDescription>
             </CardHeader>
@@ -139,13 +188,13 @@ const AdminSocialMedia = () => {
         <CardContent>
           <div className="bg-gray-50 rounded-lg p-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Social Media Post</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-4 gap-4">
               {socialMediaData.images.map((image, index) => (
                 <div
                   key={image.id}
                   className={`bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 ${
-                    index === 0 ? 'md:col-span-2 md:row-span-2 h-40' : 'h-20'
-                  } ${index === 3 ? 'md:col-span-2' : ''}`}
+                    index === 0 || index === 5 ? 'col-span-2 row-span-2 h-40' : 'h-20'
+                  }`}
                 >
                   {image.file ? (
                     <img

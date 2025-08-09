@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const AdminStatistics = () => {
   const [statsData, setStatsData] = useState({
@@ -19,8 +20,40 @@ const AdminStatistics = () => {
     setStatsData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSave = () => {
-    toast.success('Company statistics updated successfully');
+  const handleSave = async () => {
+    try {
+      const { yearsOfExcellence, millionSqFtDeveloped, happyFamilies, lakhSqFtUnderConstruction, successfulProjects, primeLocations } = statsData;
+
+      if (!yearsOfExcellence || !millionSqFtDeveloped || !happyFamilies || !lakhSqFtUnderConstruction || !successfulProjects || !primeLocations) {
+        toast.error('All statistics fields are required');
+        return;
+      }
+
+      const response = await axios.post('http://localhost:5000/api/content/company-statistics', {
+        years_of_excellence: yearsOfExcellence,
+        million_sq_ft_developed: millionSqFtDeveloped,
+        happy_families: happyFamilies,
+        lakh_sq_ft_under_construction: lakhSqFtUnderConstruction,
+        successful_projects: successfulProjects,
+        prime_locations: primeLocations
+      });
+
+      toast.success('Company statistics updated successfully');
+      console.log('Saved company_statistics:', response.data.entry);
+
+      // Reset form to default values
+      setStatsData({
+        yearsOfExcellence: '25+',
+        millionSqFtDeveloped: '1.5',
+        happyFamilies: '1500+',
+        lakhSqFtUnderConstruction: '6.5',
+        successfulProjects: '22',
+        primeLocations: '7'
+      });
+    } catch (error) {
+      console.error('Save error:', error);
+      toast.error('Failed to update company statistics: ' + (error.response?.data?.message || error.message));
+    }
   };
 
   const statsConfig = [
@@ -29,7 +62,7 @@ const AdminStatistics = () => {
     { key: 'happyFamilies', label: 'Happy Families', placeholder: '1500+' },
     { key: 'lakhSqFtUnderConstruction', label: 'Lakh Sq. Ft. Under Construction', placeholder: '6.5' },
     { key: 'successfulProjects', label: 'Successful Projects', placeholder: '22' },
-    { key: 'primeLocations', label: 'Prime Locations', placeholder: '7' }
+    { key: 'primeLocations', label: 'Upcoming Projects', placeholder: '7' }
   ];
 
   return (
