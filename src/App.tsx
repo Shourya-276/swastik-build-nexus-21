@@ -7,7 +7,9 @@ import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
 import Blogs from "./pages/Blogs";
 import Careers from "./pages/Careers";
+import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
+import LoyaltyProgramme from "./pages/LoyaltyProgramme";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -27,7 +29,8 @@ const App = () => (
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/loyalty-programme" element={<Careers />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/loyalty-programme" element={<LoyaltyProgramme />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/*" element={<AdminLayout />} />

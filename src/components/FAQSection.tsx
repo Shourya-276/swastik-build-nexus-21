@@ -74,30 +74,7 @@ const FAQSection = () => {
         </div>
 
         {/* Consultant Information */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-card animate-fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
-            <div className="space-y-2">
-              <h3 className="font-semibold text-brand-navy">MEP Consultant</h3>
-              <p className="text-sm text-brand-gray">Mr. Rupesh Gujarathi</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-brand-navy">PMC</h3>
-              <p className="text-sm text-brand-gray">Epsilon Project Management</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-brand-navy">Vastu Consultant</h3>
-              <p className="text-sm text-brand-gray">Kamlesh Vastu Engineer</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-brand-navy">Legal Consultant</h3>
-              <p className="text-sm text-brand-gray">Lexicon Law Partners</p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-brand-navy">Design Architect</h3>
-              <p className="text-sm text-brand-gray">Kiran Architect</p>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );

@@ -14,51 +14,17 @@ const PresencesSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Map Illustration */}
           <div className="relative animate-fade-in">
-            <div className="bg-white rounded-2xl p-8 shadow-card">
-              {/* Simplified Mumbai Map */}
-              <div className="relative h-96 bg-gradient-to-br from-brand-light-blue/30 to-brand-blue/20 rounded-xl overflow-hidden">
-                <div className="absolute inset-0 opacity-30">
-                  <svg viewBox="0 0 400 400" className="w-full h-full">
-                    {/* Mumbai outline */}
-                    <path 
-                      d="M100 80 L120 60 L140 70 L160 50 L180 60 L200 40 L220 50 L240 45 L260 60 L280 70 L300 90 L320 110 L340 140 L350 170 L360 200 L365 230 L360 260 L350 290 L330 320 L300 340 L270 350 L240 355 L210 350 L180 340 L150 330 L120 310 L100 280 L90 250 L85 220 L90 190 L95 160 L100 130 L100 100 Z"
-                      fill="currentColor"
-                      className="text-brand-blue/40"
-                    />
-                  </svg>
-                </div>
-                
-                {/* Location markers */}
-                <div className="absolute top-1/4 left-1/3 animate-pulse">
-                  <div className="w-4 h-4 bg-brand-blue rounded-full shadow-brand">
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-brand-navy whitespace-nowrap">
-                      Mulund
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute top-1/2 left-1/4 animate-pulse" style={{ animationDelay: '0.5s' }}>
-                  <div className="w-4 h-4 bg-brand-blue rounded-full shadow-brand">
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-brand-navy whitespace-nowrap">
-                      Vikhroli
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute bottom-1/3 left-1/3 animate-pulse" style={{ animationDelay: '1s' }}>
-                  <div className="w-4 h-4 bg-brand-blue rounded-full shadow-brand">
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-brand-navy whitespace-nowrap">
-                      Ghatkopar
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute bottom-1/4 left-1/2 animate-pulse" style={{ animationDelay: '1.5s' }}>
-                  <div className="w-4 h-4 bg-brand-blue rounded-full shadow-brand">
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xs font-semibold text-brand-navy whitespace-nowrap">
-                      Chembur
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img 
+              src="/lovable-uploads/0a2b7a81-1bc6-4992-95ae-764f073f35f7.png" 
+              alt="Mumbai Map showing Swastik Group's presence in Chembur, Ghatkopar, Vikhroli, and Mulund"
+              className="w-3/5 mx-auto"
+              style={{
+                borderTopLeftRadius: '4px',
+                borderTopRightRadius: '32px', 
+                borderBottomLeftRadius: '32px',
+                borderBottomRightRadius: '4px'
+              }}
+            />
           </div>
 
           {/* Content */}

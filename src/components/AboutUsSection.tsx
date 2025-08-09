@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+
 
 const AboutUsSection = () => {
   const [whoWeAre, setWhoWeAre] = useState({
@@ -63,7 +65,7 @@ Our commitment to excellence and innovation drives us to create spaces that not 
     <section id="about" className="py-20 bg-gradient-light">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Who we are section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
           <div className="space-y-6 animate-fade-in">
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-4">

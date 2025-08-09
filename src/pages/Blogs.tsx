@@ -42,6 +42,7 @@ const Blogs = () => {
     <div className="min-h-screen bg-gradient-light">
       <Header />
       <div className="pt-20">
+        {/* Header Section */}
         <section className="py-12 bg-gradient-to-r from-brand-light-blue to-brand-blue">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center text-white">

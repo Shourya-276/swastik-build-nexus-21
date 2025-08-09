@@ -84,35 +84,56 @@ const AboutUs = () => {
 
   const stackedCardsData = [
     {
-      id: 'mission',
+      id: 'values',
+      colors: ['hsl(var(--values-bg))', 'hsl(var(--values-bg))'] as [string, string],
+      borderColor: 'rgba(255, 255, 255, 0.2)',
       content: (
-        <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Mission
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-4">
-                <p>
-                  Our mission is to offer the best and quick real estate solutions that improve people's lives.
-                </p>
-                <p>
-                  By staying true to our values of honesty, transparency, and commitment, we work hard to raise the standards in our industry and build strong, long-lasting relationships with our clients and partners.
+        <div className="w-full">
+          <div className="hidden md:flex">
+            <div className="flex-1 bg-values-bg p-8 lg:p-12 flex flex-col justify-center">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-4">
+                    Our Values
+                  </h3>
+                  <div className="w-16 h-1 bg-brand-blue rounded-full mb-6"></div>
+                </div>
+                <p className="text-brand-gray leading-relaxed text-lg">
+                  Integrity, transparency, and excellence form the foundation of everything we do.
                 </p>
               </div>
             </div>
-            
-            <div className="order-first lg:order-last">
-              <div className="relative">
+            <div className="flex-1">
+              <div className="relative h-full min-h-[300px]">
                 <img 
-                  src={aboutInterior} 
-                  alt="Our Mission" 
-                  className="w-full h-auto rounded-2xl shadow-lg"
+                  src={lifestyleInterior}
+                  alt="Our Values"
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/5"></div>
+              </div>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <div className="relative h-48">
+              <img 
+                src={lifestyleInterior}
+                alt="Our Values"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div className="bg-values-bg p-6">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-bold text-brand-navy mb-3">
+                    Our Values
+                  </h3>
+                  <div className="w-12 h-1 bg-brand-blue rounded-full mb-4"></div>
+                </div>
+                <p className="text-brand-gray leading-relaxed">
+                  Integrity, transparency, and excellence form the foundation of everything we do.
+                </p>
               </div>
             </div>
           </div>
@@ -121,31 +142,54 @@ const AboutUs = () => {
     },
     {
       id: 'vision',
+      colors: ['hsl(var(--vision-bg))', 'hsl(var(--vision-bg))'] as [string, string],
+      borderColor: 'rgba(255, 255, 255, 0.2)',
       content: (
-        <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="relative">
-              <img 
-                src={lifestyleInterior} 
-                alt="Our Vision" 
-                className="w-full h-auto rounded-2xl shadow-lg"
-              />
-            </div>
-            
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Vision
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-4">
-                <p>
-                  Our vision is to enhance overall infrastructure, making life better and progress faster through innovative real estate projects. Our aim is to make it affordable for people to locate and purchase homes and office spaces.
+        <div className="w-full">
+          <div className="hidden md:flex">
+            <div className="flex-1 bg-vision-bg p-8 lg:p-12 flex flex-col justify-center">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-4">
+                    Our Vision
+                  </h3>
+                  <div className="w-16 h-1 bg-brand-blue rounded-full mb-6"></div>
+                </div>
+                <p className="text-brand-gray leading-relaxed text-lg">
+                  To be Mumbai's most trusted real estate developer, creating sustainable communities.
                 </p>
-                <p>
-                  We are committed to improving the quality and design of our properties. We want to build a better future for everyone through innovation, prioritizing sustainability, and Engaging with the community.
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="relative h-full min-h-[300px]">
+                <img 
+                  src={lifestyleInterior}
+                  alt="Our Vision"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/5"></div>
+              </div>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <div className="relative h-48">
+              <img 
+                src={lifestyleInterior}
+                alt="Our Vision"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div className="bg-vision-bg p-6">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-bold text-brand-navy mb-3">
+                    Our Vision
+                  </h3>
+                  <div className="w-12 h-1 bg-brand-blue rounded-full mb-4"></div>
+                </div>
+                <p className="text-brand-gray leading-relaxed">
+                  To be Mumbai's most trusted real estate developer, creating sustainable communities.
                 </p>
               </div>
             </div>
@@ -154,41 +198,56 @@ const AboutUs = () => {
       )
     },
     {
-      id: 'values',
+      id: 'mission',
+      colors: ['hsl(var(--mission-bg))', 'hsl(var(--mission-bg))'] as [string, string],
+      borderColor: 'rgba(255, 255, 255, 0.2)',
       content: (
-        <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                  Our Values
-                </h2>
-                <div className="w-16 h-1 bg-brand-blue mb-6"></div>
-              </div>
-              
-              <div className="text-gray-600 leading-relaxed space-y-6">
+        <div className="w-full">
+          <div className="hidden md:flex">
+            <div className="flex-1 bg-mission-bg p-8 lg:p-12 flex flex-col justify-center">
+              <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Transparency:</h3>
-                  <p>We believe in open communication so that our customers informed about everything we do.</p>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-brand-navy mb-4">
+                    Our Mission
+                  </h3>
+                  <div className="w-16 h-1 bg-brand-blue rounded-full mb-6"></div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Commitment:</h3>
-                  <p>We always make sure to stick to deadlines and deliver the best and quality projects on time and within budget.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">• Excellence:</h3>
-                  <p>From designing, building, serving customers, or managing projects we always aim for the best in everything we do.</p>
-                </div>
+                <p className="text-brand-gray leading-relaxed text-lg">
+                  Building quality homes that blend contemporary design with innovation and sustainability.
+                </p>
               </div>
             </div>
-            
-            <div className="order-first lg:order-last">
-              <div className="relative">
+            <div className="flex-1">
+              <div className="relative h-full min-h-[300px]">
                 <img 
-                  src={aboutInterior} 
-                  alt="Our Values" 
-                  className="w-full h-auto rounded-2xl shadow-lg"
+                  src={lifestyleInterior}
+                  alt="Our Mission"
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/5"></div>
+              </div>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <div className="relative h-48">
+              <img 
+                src={lifestyleInterior}
+                alt="Our Mission"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div className="bg-mission-bg p-6">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-bold text-brand-navy mb-3">
+                    Our Mission
+                  </h3>
+                  <div className="w-12 h-1 bg-brand-blue rounded-full mb-4"></div>
+                </div>
+                <p className="text-brand-gray leading-relaxed">
+                  Building quality homes that blend contemporary design with innovation and sustainability.
+                </p>
               </div>
             </div>
           </div>
@@ -216,12 +275,13 @@ const AboutUs = () => {
       <Header />
       
       {/* Our Business Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-10 lg:py-12 relative bg-[#EEF8FF]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#EEF8FF]">
+          <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
                   Our Business
                 </h2>
                 <div className="w-16 h-1 bg-brand-blue mb-6"></div>
@@ -244,11 +304,12 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
       {/* Statistics Section */}
-      <section className="py-12">
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-gradient-to-r from-brand-blue to-blue-700 rounded-3xl px-8 py-12 text-white">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
@@ -266,8 +327,9 @@ const AboutUs = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-white">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="py-10 lg:py-12 relative bg-[#EEF8FF]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#EEF8FF]">
+          <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="relative">
               <img 
@@ -277,9 +339,9 @@ const AboutUs = () => {
               />
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-in">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl lg:text-4xl font-bold text-brand-navy mb-6">
                   About Us
                 </h2>
                 <div className="w-16 h-1 bg-brand-blue mb-6"></div>
@@ -292,11 +354,12 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
+          </div>
         </div>
       </section>
 
-      {/* Stacked Cards Section - Mission, Vision, Values */}
-      <section className="py-24 lg:py-32">
+      {/* Values, Vision & Mission Section */}
+      <section className="py-10 lg:py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div 
             ref={containerRef}
@@ -361,7 +424,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Projects Cards Section */}
       <ProjectsSection />
 
@@ -369,10 +432,18 @@ const AboutUs = () => {
       <WhyChooseUsSection />
 
       {/* Blogs Section */}
-      <BlogsSection />
+      <section className="py-10 lg:py-12 bg-muted/50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <BlogsSection />
+        </div>
+      </section>
 
       {/* FAQs Section */}
-      <FAQSection />
+      <section className="py-10 lg:py-12">
+        <div className="container mx-auto px-4 lg:px-8">
+          <FAQSection />
+        </div>
+      </section>
 
       <Footer />
     </div>
